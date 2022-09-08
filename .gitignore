@@ -1,3 +1,6 @@
 .vscode
 build
 *.pptx
+*.a
+*.lib
+*.dll
