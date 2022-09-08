@@ -1,6 +1,6 @@
-PROJECT(rpc)
+PROJECT(merlin_5.0_cpp)
 CMAKE_MINIMUM_REQUIRED (VERSION 3.15)
-SET(CMAKE_CXX_FLAGS "-g -Wall -std=c++14 -O3 -lprotobuf -lpthread")
+SET(CMAKE_CXX_FLAGS "-g -Wall -std=c++20 -O3 -lprotobuf -lpthread")
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(contrib)
 aux_source_directory(protos/ DIR_SRCS)
