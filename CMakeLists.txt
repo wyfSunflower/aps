@@ -1,0 +1,8 @@
+PROJECT(rpc)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.15)
+SET(CMAKE_CXX_FLAGS "-g -Wall -std=c++14 -O3 -lprotobuf -lpthread")
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+aux_source_directory(protos/ DIR_SRCS)
+aux_source_directory(. DIR_SRCS)
+ADD_EXECUTABLE(main ${DIR_SRCS})
+TARGET_LINK_LIBRARIES(main ${PROTOBUF_LIBRARY})
