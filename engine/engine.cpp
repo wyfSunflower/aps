@@ -44,6 +44,10 @@ namespace pipeline{
                         WARNING(JSON_PARSE_ERROR);
                     }
                     size_t prei = element.get<size_t>();
+                    if(k == prei){
+                        printf("k==prei==%zu\n", k);
+                        WARNING(DEADLOCK_ERROR);
+                    }
                     ch[prei].insert(k);
                     pr[k].insert(prei);
                 }

@@ -13,6 +13,7 @@
 #define PARSE_OK 0
 #define JSON_PARSE_ERROR 1
 #define CUSTOM_INVOKE_FUNCTION_NOT_FOUND 2
+#define DEADLOCK_ERROR 3
 
 namespace pipeline{
 class engine{
