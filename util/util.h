@@ -4,7 +4,7 @@
 #include <string>
 #include "nlohmann/json.hpp"
 #define DBG printf("__FILE__==%s, __LINE__==%d\n", __FILE__, __LINE__);
-#define WARNING(TYPE) printf("FILE==%s, LINE==%d, TYPE==%s (%d)", __FILE__, __LINE__, #TYPE, TYPE); return TYPE;
+#define WARNING(TYPE) printf("FILE==%s, LINE==%d, TYPE==%s (%d)\n", __FILE__, __LINE__, #TYPE, TYPE); return TYPE;
 
 template<typename T>
 bool stoT(std::string s, T& t){
@@ -38,6 +38,117 @@ template<typename KeyType, typename... Args>
 bool contains(nlohmann::json& j, KeyType&& k, Args... args){
     if(!j.contains<KeyType>(k)) return false;
     return contains(j, args...);
+}
+
+template<typename T, T...>
+struct myinteger_sequence { };
+
+template<typename T, typename S1 = void, typename S2 = void>
+struct helper{
+    std::string operator()(const T& s){
+        return std::string(s);
+    }
+}; 
+
+template<typename T>
+struct helper<T, decltype((void)std::to_string(std::declval<T>())), typename std::enable_if<!std::is_same<typename std::decay<T>::type, char>::value, void>::type>{
+    std::string operator()(const T& s){
+        return std::to_string(s);
+    }
+};
+
+template<typename T>
+struct helper<T, void, typename std::enable_if<std::is_same<typename std::decay<T>::type, char>::value, void>::type>{
+    std::string operator()(const T& s){
+        return std::string(1, s);
+    }
+};
+
+template<typename T, typename S1 =void, typename S2 =void>
+struct seqhelper{
+    const static bool seq = false;
+};
+
+template<typename T>
+struct seqhelper<T, decltype((void)(std::declval<T>().begin())), decltype((void)(std::declval<T>().end()))>{
+    const static bool seq = !(std::is_same<typename std::decay<T>::type, std::string>::value);
+};
+
+template<std::size_t N, std::size_t... I>
+struct gen_indices : gen_indices<(N - 1), (N - 1), I...> { };
+template<std::size_t... I>
+struct gen_indices<0, I...> : myinteger_sequence<std::size_t, I...> { };
+
+template<typename T, typename REDUNDANT = void>
+struct converter{
+    template<typename H>
+    std::string& to_string_impl(std::string& s, H&& h)
+    {
+        using std::to_string;
+        s += converter<H>().convert(std::forward<H>(h));
+        return s;    
+    }
+
+    template<typename H, typename... T1>
+    std::string& to_string_impl(std::string& s, H&& h, T1&&... t)
+    {
+        using std::to_string;
+        s += converter<H>().convert(std::forward<H>(h)) + ", ";
+        return to_string_impl(s, std::forward<T1>(t)...);
+    }
+
+    template<typename... T1, std::size_t... I>
+    std::string mystring(const std::tuple<T1...>& tup, myinteger_sequence<std::size_t, I...>)
+    {
+        std::string result;
+        int ctx[] = { (to_string_impl(result, std::get<I>(tup)...), 0), 0 };
+        (void)ctx;
+        return result;
+    }
+
+    template<typename... S>
+    std::string mystring(const std::tuple<S...>& tup)
+    {
+        return mystring(tup, gen_indices<sizeof...(S)>{});
+    }
+
+    template<typename S=T>
+    std::string convert(const S& x){
+        return helper<S>()(x);
+    }
+
+    template<typename... S>
+    std::string convert(const std::tuple<S...>& tup){
+        std::string res = std::move(mystring(tup));
+        res = "{" + res + "}";
+        return res;
+    }
+
+    template<typename S1, typename S2>
+    std::string convert(const std::pair<S1, S2>& x){
+        return "{" + converter<S1>().convert(x.first) + ", " + converter<S2>().convert(x.second) + "}";
+    }
+};
+
+template<typename T>
+struct converter<T, typename std::enable_if<seqhelper<T>::seq, void>::type>{
+    template<typename S=T>
+    std::string convert(const S& x){
+        int len = 0;
+        std::string ans = "{";
+        for(auto it = x.begin(); it != x.end(); ++it){
+            ans += move(converter<typename S::value_type>().convert(*it)) + ", ";
+            ++len;
+        }
+        if(len == 0) return "{[EMPTY]}";
+        ans.pop_back(), ans.pop_back();
+        return ans + "}";
+    }
+};
+
+template<typename T>
+std::string stlout(const T& x){
+    return converter<T>().convert(x);
 }
 
 

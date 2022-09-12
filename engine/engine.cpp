@@ -67,7 +67,7 @@ namespace pipeline{
         for(auto it = pr.begin(); it != pr.end(); ++it){
             std::set<size_t>& tmp = it -> second;
             for(auto tmppre: tmp){
-                if(pr[tmppre].size() == 0){
+                if(tmppre != 0 && pr[tmppre].size() == 0){
                     printf("pr[%zu].size()==%zu\n", tmppre, pr[tmppre].size());
                     WARNING(NOT_CONNECTED);
                 }
@@ -114,5 +114,16 @@ namespace pipeline{
             return JSON_PARSE_ERROR;
         }
         return parse(j);
+    }
+
+    std::string engine::debug(){
+        std::string res;
+        res += "root==" + std::to_string(root) + ", layer(" + std::to_string(root) + ")==" + std::to_string(id2layer[root]) + "\n";
+        for(auto it = pr.begin(); it != pr.end(); ++it){
+            res += "id==" + std::to_string(it->first) + ", layer(" + std::to_string(it->first) + ")==" + std::to_string(id2layer[it->first]) + ", pre==" + stlout(pr[it->first]) + "\n";
+        }
+        res += "Debug layers:\n";
+        res += stlout(layer2ids) + "\n";
+        return res;
     }
 }

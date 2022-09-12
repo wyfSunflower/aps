@@ -38,6 +38,9 @@ public:
     int parse(nlohmann::json& graph);
     int parse(std::string& s);
     int parse(std::string&& s);
+    std::string debug();
+    void execute_s(); //串行计算
+    void execute_p(); //模块间并行
 };
 }
 
