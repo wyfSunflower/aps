@@ -4,6 +4,7 @@
 #include <string>
 #include "nlohmann/json.hpp"
 #define DBG printf("__FILE__==%s, __LINE__==%d\n", __FILE__, __LINE__);
+#define WARNING(TYPE) printf("FILE==%s, LINE==%d, TYPE==%s (%d)", __FILE__, __LINE__, #TYPE, TYPE); return TYPE;
 
 template<typename T>
 bool stoT(std::string s, T& t){

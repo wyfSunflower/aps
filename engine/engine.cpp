@@ -1,5 +1,6 @@
 #include "engine.h"
 #include <iostream>
+#include <queue>
 #include "../custom/exampleudf.h"
 #include "../util/util.h"
 
@@ -18,7 +19,9 @@ namespace pipeline{
             size_t k = getNonNegativeInteger(key, ok);
             if(!ok){
                 WARNING(JSON_PARSE_ERROR);
-                return JSON_PARSE_ERROR;
+            }
+            if(k == 0){
+                WARNING(ROOT_0_HAS_PRE);
             }
             try{
                 nlohmann::json& value = it.value();
@@ -37,6 +40,7 @@ namespace pipeline{
                 if(custom_invoke.find(fids) == custom_invoke.end()){
                     WARNING(CUSTOM_INVOKE_FUNCTION_NOT_FOUND);
                 }
+                id2f[k] = custom_invoke[fids];
                 int sz = prea.size();
                 for(int i = 0; i < sz; ++i){
                     nlohmann::json& element = prea[i];
@@ -54,6 +58,45 @@ namespace pipeline{
             }catch(nlohmann::json::parse_error& ex){
                 WARNING(JSON_PARSE_ERROR);
             }
+        }//for
+
+        std::map<size_t, size_t> idg;//入度
+        idg[root] = 0;
+        id2layer[root] = 0;
+        layer2ids[0] = {root};
+        for(auto it = pr.begin(); it != pr.end(); ++it){
+            std::set<size_t>& tmp = it -> second;
+            for(auto tmppre: tmp){
+                if(pr[tmppre].size() == 0){
+                    printf("pr[%zu].size()==%zu\n", tmppre, pr[tmppre].size());
+                    WARNING(NOT_CONNECTED);
+                }
+            }
+            idg[it->first] = it -> second.size();
+        }
+
+        //拓扑排序
+        std::queue<std::pair<size_t, size_t>> q;
+        q.push({root, 0});
+        size_t num = 0;
+        while(!q.empty()){
+            auto [u, layerid] = q.front();
+            q.pop();
+            id2layer[u] = layerid;
+            layer2ids[layerid].insert(u);
+            for(int v: ch[u]){
+                --idg[v]; //降低后继节点的入度
+                if(idg[v] == 0){//如果后继节点的入度为0, 入队
+                    q.push({v, layerid+1});
+                }
+            }
+            ++num; //统计加入拓扑排序的节点数
+        }
+        if(num != pr.size() + 1){
+            //从拓扑排序中出队列的节点数目(num)应该等于总的节点数目
+            //上面已经校验过, 凡是pr右侧出现的节点都在pr左侧出现过
+            //因此总节点数为pr.size() + 1
+            WARNING(TOPOLOGICAL_SORTING_FAILED);
         }
         return PARSE_OK;
     }
