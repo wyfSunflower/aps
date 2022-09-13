@@ -17,6 +17,7 @@
 #define ROOT_0_HAS_PRE 4
 #define NOT_CONNECTED 5
 #define TOPOLOGICAL_SORTING_FAILED 6
+#define PARALLEL 0
 
 namespace pipeline{
 class engine{
@@ -31,16 +32,29 @@ private:
     global::globalstate gs;
     std::map<size_t, std::any> storage;
     std::map<std::string, std::shared_ptr<udf>> custom_invoke;
+    engine& operator=(const engine&);
 public:
     engine(): initial(true), root(0){reg();}
+    engine(engine&)=delete;
+    engine(engine&&)=delete;
+    std::any operator[](size_t idx);
+    template<typename T> engine& operator=(T& initial){
+        storage[root] = initial;
+        return *this;
+    }
+    template<typename T> engine& operator=(T&& initial){
+        storage[root] = initial;
+        return *this;
+    }
     void clear(){id2f.clear(); id2layer.clear(); layer2ids.clear(); ch.clear(); pr.clear(); storage.clear();}
     void reg();
     int parse(nlohmann::json& graph);
     int parse(std::string& s);
     int parse(std::string&& s);
     std::string debug();
-    void execute_s(); //串行计算
-    void execute_p(); //模块间并行
+    void run_s(); //串行计算
+    void run_p(); //模块间并行
+    void operator()();
 };
 }
 

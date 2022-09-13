@@ -9,6 +9,10 @@ namespace pipeline{
         REGISTER(exampleudf);
     }
 
+    std::any engine::operator[](size_t idx){
+        return storage[idx];
+    }
+
     int engine::parse(nlohmann::json& graph){
         //硬编码
         if(!initial) clear(); //如果不是最开始的状态, 清空
@@ -125,5 +129,32 @@ namespace pipeline{
         res += "Debug layers:\n";
         res += stlout(layer2ids) + "\n";
         return res;
+    }
+
+    void engine::run_s(){
+        for(auto it = layer2ids.begin(); it != layer2ids.end(); ++it){
+            if(it -> first == 0) continue;
+            for(int idx: it->second){
+                std::set<size_t>& pre = pr[idx];
+                std::vector<std::any*> va;
+                std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
+                    return &storage[x];
+                });
+                storage[idx] = std::move(id2f[idx]->operator()(va, gs));
+            }
+        }
+    }
+
+    void engine::run_p(){
+        //using std::async
+        //TODO
+    }
+
+    void engine::operator()(){
+        if(PARALLEL){
+            run_p();
+        }else{
+            run_s();
+        }
     }
 }

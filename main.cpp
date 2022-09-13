@@ -10,4 +10,5 @@ using namespace std;
 
 int main(void){
     test("test1.txt", "", test_engine);
+    test("test1.txt", "", test_pipeline1);
 }

@@ -55,3 +55,12 @@ int test_engine(std::istream* in, std::ostream* out){
     }
     return ok;
 }
+
+int test_pipeline1(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
+    e = 1;
+    e();
+    std::cout << std::any_cast<int>(e[3]);
+    return 0;
+}
