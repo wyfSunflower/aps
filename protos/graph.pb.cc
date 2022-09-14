@@ -29,17 +29,13 @@ PROTOBUF_CONSTEXPR edge::edge(
   , /*decltype(_impl_._y_cached_byte_size_)*/{0}
   , /*decltype(_impl_.z_)*/{}
   , /*decltype(_impl_._z_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.layerid_)*/{}
-  , /*decltype(_impl_._layerid_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.theta1_)*/{}
-  , /*decltype(_impl_._theta1_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.theta2_)*/{}
-  , /*decltype(_impl_._theta2_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.type_)*/{}
-  , /*decltype(_impl_._type_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.edgeid_)*/0
-  , /*decltype(_impl_.startid_)*/0
-  , /*decltype(_impl_.endid_)*/0
+  , /*decltype(_impl_.edgeid_)*/0u
+  , /*decltype(_impl_.startid_)*/0u
+  , /*decltype(_impl_.endid_)*/0u
+  , /*decltype(_impl_.zsame_)*/0
+  , /*decltype(_impl_.type_)*/0u
+  , /*decltype(_impl_.theta1_)*/0
+  , /*decltype(_impl_.theta2_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct edgeDefaultTypeInternal {
   PROTOBUF_CONSTEXPR edgeDefaultTypeInternal()
@@ -53,11 +49,12 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR vertex::vertex(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.e_)*/{}
-  , /*decltype(_impl_.id_)*/0
+  , /*decltype(_impl_.id_)*/0u
   , /*decltype(_impl_.x_)*/0
   , /*decltype(_impl_.y_)*/0
   , /*decltype(_impl_.z_)*/0
-  , /*decltype(_impl_.layerid_)*/0
+  , /*decltype(_impl_.layerid_)*/0u
+  , /*decltype(_impl_.type_)*/0u
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct vertexDefaultTypeInternal {
   PROTOBUF_CONSTEXPR vertexDefaultTypeInternal()
@@ -86,10 +83,10 @@ const uint32_t TableStruct_graph_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pr
   PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.x_),
   PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.y_),
   PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.z_),
-  PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.layerid_),
+  PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.zsame_),
+  PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.type_),
   PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.theta1_),
   PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.theta2_),
-  PROTOBUF_FIELD_OFFSET(::graph::edge, _impl_.type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::graph::vertex, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -101,6 +98,7 @@ const uint32_t TableStruct_graph_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pr
   PROTOBUF_FIELD_OFFSET(::graph::vertex, _impl_.y_),
   PROTOBUF_FIELD_OFFSET(::graph::vertex, _impl_.z_),
   PROTOBUF_FIELD_OFFSET(::graph::vertex, _impl_.layerid_),
+  PROTOBUF_FIELD_OFFSET(::graph::vertex, _impl_.type_),
   PROTOBUF_FIELD_OFFSET(::graph::vertex, _impl_.e_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -114,17 +112,18 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_graph_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\013graph.proto\022\005graph\"\226\001\n\004edge\022\016\n\006edgeid\030"
-  "\001 \001(\005\022\017\n\007startid\030\002 \001(\005\022\r\n\005endid\030\003 \001(\005\022\t\n"
-  "\001x\030\004 \003(\005\022\t\n\001y\030\005 \003(\005\022\t\n\001z\030\006 \003(\005\022\017\n\007layeri"
-  "d\030\007 \003(\005\022\016\n\006theta1\030\010 \003(\005\022\016\n\006theta2\030\t \003(\005\022"
-  "\014\n\004type\030\n \003(\005\"^\n\006vertex\022\n\n\002id\030\001 \001(\005\022\t\n\001x"
-  "\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001z\030\004 \001(\005\022\017\n\007layerid\030"
-  "\005 \001(\005\022\026\n\001e\030\006 \003(\0132\013.graph.edgeb\006proto3"
+  "\n\013graph.proto\022\005graph\"\224\001\n\004edge\022\016\n\006edgeid\030"
+  "\001 \001(\r\022\017\n\007startid\030\002 \001(\r\022\r\n\005endid\030\003 \001(\r\022\t\n"
+  "\001x\030\004 \003(\005\022\t\n\001y\030\005 \003(\005\022\t\n\001z\030\006 \003(\005\022\r\n\005zsame\030"
+  "\007 \001(\005\022\014\n\004type\030\010 \001(\r\022\016\n\006theta1\030\t \001(\005\022\016\n\006t"
+  "heta2\030\n \001(\005\"l\n\006vertex\022\n\n\002id\030\001 \001(\r\022\t\n\001x\030\002"
+  " \001(\005\022\t\n\001y\030\003 \001(\005\022\t\n\001z\030\004 \001(\005\022\017\n\007layerid\030\005 "
+  "\001(\r\022\014\n\004type\030\006 \001(\r\022\026\n\001e\030\007 \003(\0132\013.graph.edg"
+  "eb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_graph_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_graph_2eproto = {
-    false, false, 277, descriptor_table_protodef_graph_2eproto,
+    false, false, 289, descriptor_table_protodef_graph_2eproto,
     "graph.proto",
     &descriptor_table_graph_2eproto_once, nullptr, 0, 2,
     schemas, file_default_instances, TableStruct_graph_2eproto::offsets,
@@ -161,23 +160,19 @@ edge::edge(const edge& from)
     , /*decltype(_impl_._y_cached_byte_size_)*/{0}
     , decltype(_impl_.z_){from._impl_.z_}
     , /*decltype(_impl_._z_cached_byte_size_)*/{0}
-    , decltype(_impl_.layerid_){from._impl_.layerid_}
-    , /*decltype(_impl_._layerid_cached_byte_size_)*/{0}
-    , decltype(_impl_.theta1_){from._impl_.theta1_}
-    , /*decltype(_impl_._theta1_cached_byte_size_)*/{0}
-    , decltype(_impl_.theta2_){from._impl_.theta2_}
-    , /*decltype(_impl_._theta2_cached_byte_size_)*/{0}
-    , decltype(_impl_.type_){from._impl_.type_}
-    , /*decltype(_impl_._type_cached_byte_size_)*/{0}
     , decltype(_impl_.edgeid_){}
     , decltype(_impl_.startid_){}
     , decltype(_impl_.endid_){}
+    , decltype(_impl_.zsame_){}
+    , decltype(_impl_.type_){}
+    , decltype(_impl_.theta1_){}
+    , decltype(_impl_.theta2_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.edgeid_, &from._impl_.edgeid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.endid_) -
-    reinterpret_cast<char*>(&_impl_.edgeid_)) + sizeof(_impl_.endid_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.theta2_) -
+    reinterpret_cast<char*>(&_impl_.edgeid_)) + sizeof(_impl_.theta2_));
   // @@protoc_insertion_point(copy_constructor:graph.edge)
 }
 
@@ -192,17 +187,13 @@ inline void edge::SharedCtor(
     , /*decltype(_impl_._y_cached_byte_size_)*/{0}
     , decltype(_impl_.z_){arena}
     , /*decltype(_impl_._z_cached_byte_size_)*/{0}
-    , decltype(_impl_.layerid_){arena}
-    , /*decltype(_impl_._layerid_cached_byte_size_)*/{0}
-    , decltype(_impl_.theta1_){arena}
-    , /*decltype(_impl_._theta1_cached_byte_size_)*/{0}
-    , decltype(_impl_.theta2_){arena}
-    , /*decltype(_impl_._theta2_cached_byte_size_)*/{0}
-    , decltype(_impl_.type_){arena}
-    , /*decltype(_impl_._type_cached_byte_size_)*/{0}
-    , decltype(_impl_.edgeid_){0}
-    , decltype(_impl_.startid_){0}
-    , decltype(_impl_.endid_){0}
+    , decltype(_impl_.edgeid_){0u}
+    , decltype(_impl_.startid_){0u}
+    , decltype(_impl_.endid_){0u}
+    , decltype(_impl_.zsame_){0}
+    , decltype(_impl_.type_){0u}
+    , decltype(_impl_.theta1_){0}
+    , decltype(_impl_.theta2_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -221,10 +212,6 @@ inline void edge::SharedDtor() {
   _impl_.x_.~RepeatedField();
   _impl_.y_.~RepeatedField();
   _impl_.z_.~RepeatedField();
-  _impl_.layerid_.~RepeatedField();
-  _impl_.theta1_.~RepeatedField();
-  _impl_.theta2_.~RepeatedField();
-  _impl_.type_.~RepeatedField();
 }
 
 void edge::SetCachedSize(int size) const {
@@ -240,13 +227,9 @@ void edge::Clear() {
   _impl_.x_.Clear();
   _impl_.y_.Clear();
   _impl_.z_.Clear();
-  _impl_.layerid_.Clear();
-  _impl_.theta1_.Clear();
-  _impl_.theta2_.Clear();
-  _impl_.type_.Clear();
   ::memset(&_impl_.edgeid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.endid_) -
-      reinterpret_cast<char*>(&_impl_.edgeid_)) + sizeof(_impl_.endid_));
+      reinterpret_cast<char*>(&_impl_.theta2_) -
+      reinterpret_cast<char*>(&_impl_.edgeid_)) + sizeof(_impl_.theta2_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -256,7 +239,7 @@ const char* edge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 edgeid = 1;
+      // uint32 edgeid = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.edgeid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -264,7 +247,7 @@ const char* edge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // int32 startid = 2;
+      // uint32 startid = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _impl_.startid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -272,7 +255,7 @@ const char* edge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // int32 endid = 3;
+      // uint32 endid = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _impl_.endid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -313,46 +296,34 @@ const char* edge::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // repeated int32 layerid = 7;
+      // int32 zsame = 7;
       case 7:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_layerid(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 56) {
-          _internal_add_layerid(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _impl_.zsame_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // repeated int32 theta1 = 8;
+      // uint32 type = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_theta1(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 64) {
-          _internal_add_theta1(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          _impl_.type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // repeated int32 theta2 = 9;
+      // int32 theta1 = 9;
       case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_theta2(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 72) {
-          _internal_add_theta2(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          _impl_.theta1_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
-      // repeated int32 type = 10;
+      // int32 theta2 = 10;
       case 10:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedInt32Parser(_internal_mutable_type(), ptr, ctx);
-          CHK_(ptr);
-        } else if (static_cast<uint8_t>(tag) == 80) {
-          _internal_add_type(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          _impl_.theta2_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -386,22 +357,22 @@ uint8_t* edge::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 edgeid = 1;
+  // uint32 edgeid = 1;
   if (this->_internal_edgeid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_edgeid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_edgeid(), target);
   }
 
-  // int32 startid = 2;
+  // uint32 startid = 2;
   if (this->_internal_startid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_startid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_startid(), target);
   }
 
-  // int32 endid = 3;
+  // uint32 endid = 3;
   if (this->_internal_endid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_endid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(3, this->_internal_endid(), target);
   }
 
   // repeated int32 x = 4;
@@ -431,40 +402,28 @@ uint8_t* edge::_InternalSerialize(
     }
   }
 
-  // repeated int32 layerid = 7;
-  {
-    int byte_size = _impl_._layerid_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
-          7, _internal_layerid(), byte_size, target);
-    }
+  // int32 zsame = 7;
+  if (this->_internal_zsame() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(7, this->_internal_zsame(), target);
   }
 
-  // repeated int32 theta1 = 8;
-  {
-    int byte_size = _impl_._theta1_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
-          8, _internal_theta1(), byte_size, target);
-    }
+  // uint32 type = 8;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(8, this->_internal_type(), target);
   }
 
-  // repeated int32 theta2 = 9;
-  {
-    int byte_size = _impl_._theta2_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
-          9, _internal_theta2(), byte_size, target);
-    }
+  // int32 theta1 = 9;
+  if (this->_internal_theta1() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(9, this->_internal_theta1(), target);
   }
 
-  // repeated int32 type = 10;
-  {
-    int byte_size = _impl_._type_cached_byte_size_.load(std::memory_order_relaxed);
-    if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
-          10, _internal_type(), byte_size, target);
-    }
+  // int32 theta2 = 10;
+  if (this->_internal_theta2() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(10, this->_internal_theta2(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -525,75 +484,39 @@ size_t edge::ByteSizeLong() const {
     total_size += data_size;
   }
 
-  // repeated int32 layerid = 7;
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.layerid_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._layerid_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
-  }
-
-  // repeated int32 theta1 = 8;
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.theta1_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._theta1_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
-  }
-
-  // repeated int32 theta2 = 9;
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.theta2_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._theta2_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
-  }
-
-  // repeated int32 type = 10;
-  {
-    size_t data_size = ::_pbi::WireFormatLite::
-      Int32Size(this->_impl_.type_);
-    if (data_size > 0) {
-      total_size += 1 +
-        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
-    }
-    int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._type_cached_byte_size_.store(cached_size,
-                                    std::memory_order_relaxed);
-    total_size += data_size;
-  }
-
-  // int32 edgeid = 1;
+  // uint32 edgeid = 1;
   if (this->_internal_edgeid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_edgeid());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_edgeid());
   }
 
-  // int32 startid = 2;
+  // uint32 startid = 2;
   if (this->_internal_startid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_startid());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_startid());
   }
 
-  // int32 endid = 3;
+  // uint32 endid = 3;
   if (this->_internal_endid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_endid());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_endid());
+  }
+
+  // int32 zsame = 7;
+  if (this->_internal_zsame() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_zsame());
+  }
+
+  // uint32 type = 8;
+  if (this->_internal_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_type());
+  }
+
+  // int32 theta1 = 9;
+  if (this->_internal_theta1() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_theta1());
+  }
+
+  // int32 theta2 = 10;
+  if (this->_internal_theta2() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_theta2());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -617,10 +540,6 @@ void edge::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   _this->_impl_.x_.MergeFrom(from._impl_.x_);
   _this->_impl_.y_.MergeFrom(from._impl_.y_);
   _this->_impl_.z_.MergeFrom(from._impl_.z_);
-  _this->_impl_.layerid_.MergeFrom(from._impl_.layerid_);
-  _this->_impl_.theta1_.MergeFrom(from._impl_.theta1_);
-  _this->_impl_.theta2_.MergeFrom(from._impl_.theta2_);
-  _this->_impl_.type_.MergeFrom(from._impl_.type_);
   if (from._internal_edgeid() != 0) {
     _this->_internal_set_edgeid(from._internal_edgeid());
   }
@@ -629,6 +548,18 @@ void edge::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   }
   if (from._internal_endid() != 0) {
     _this->_internal_set_endid(from._internal_endid());
+  }
+  if (from._internal_zsame() != 0) {
+    _this->_internal_set_zsame(from._internal_zsame());
+  }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  if (from._internal_theta1() != 0) {
+    _this->_internal_set_theta1(from._internal_theta1());
+  }
+  if (from._internal_theta2() != 0) {
+    _this->_internal_set_theta2(from._internal_theta2());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -650,13 +581,9 @@ void edge::InternalSwap(edge* other) {
   _impl_.x_.InternalSwap(&other->_impl_.x_);
   _impl_.y_.InternalSwap(&other->_impl_.y_);
   _impl_.z_.InternalSwap(&other->_impl_.z_);
-  _impl_.layerid_.InternalSwap(&other->_impl_.layerid_);
-  _impl_.theta1_.InternalSwap(&other->_impl_.theta1_);
-  _impl_.theta2_.InternalSwap(&other->_impl_.theta2_);
-  _impl_.type_.InternalSwap(&other->_impl_.type_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(edge, _impl_.endid_)
-      + sizeof(edge::_impl_.endid_)
+      PROTOBUF_FIELD_OFFSET(edge, _impl_.theta2_)
+      + sizeof(edge::_impl_.theta2_)
       - PROTOBUF_FIELD_OFFSET(edge, _impl_.edgeid_)>(
           reinterpret_cast<char*>(&_impl_.edgeid_),
           reinterpret_cast<char*>(&other->_impl_.edgeid_));
@@ -690,12 +617,13 @@ vertex::vertex(const vertex& from)
     , decltype(_impl_.y_){}
     , decltype(_impl_.z_){}
     , decltype(_impl_.layerid_){}
+    , decltype(_impl_.type_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.id_, &from._impl_.id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.layerid_) -
-    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.layerid_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.type_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.type_));
   // @@protoc_insertion_point(copy_constructor:graph.vertex)
 }
 
@@ -705,11 +633,12 @@ inline void vertex::SharedCtor(
   (void)is_message_owned;
   new (&_impl_) Impl_{
       decltype(_impl_.e_){arena}
-    , decltype(_impl_.id_){0}
+    , decltype(_impl_.id_){0u}
     , decltype(_impl_.x_){0}
     , decltype(_impl_.y_){0}
     , decltype(_impl_.z_){0}
-    , decltype(_impl_.layerid_){0}
+    , decltype(_impl_.layerid_){0u}
+    , decltype(_impl_.type_){0u}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -740,8 +669,8 @@ void vertex::Clear() {
 
   _impl_.e_.Clear();
   ::memset(&_impl_.id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.layerid_) -
-      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.layerid_));
+      reinterpret_cast<char*>(&_impl_.type_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.type_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -751,7 +680,7 @@ const char* vertex::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int32 id = 1;
+      // uint32 id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -783,7 +712,7 @@ const char* vertex::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // int32 layerid = 5;
+      // uint32 layerid = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.layerid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
@@ -791,16 +720,24 @@ const char* vertex::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // repeated .graph.edge e = 6;
+      // uint32 type = 6;
       case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .graph.edge e = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
           ptr -= 1;
           do {
             ptr += 1;
             ptr = ctx->ParseMessage(_internal_add_e(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -833,10 +770,10 @@ uint8_t* vertex::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 id = 1;
+  // uint32 id = 1;
   if (this->_internal_id() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(1, this->_internal_id(), target);
   }
 
   // int32 x = 2;
@@ -857,18 +794,24 @@ uint8_t* vertex::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_z(), target);
   }
 
-  // int32 layerid = 5;
+  // uint32 layerid = 5;
   if (this->_internal_layerid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(5, this->_internal_layerid(), target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_layerid(), target);
   }
 
-  // repeated .graph.edge e = 6;
+  // uint32 type = 6;
+  if (this->_internal_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_type(), target);
+  }
+
+  // repeated .graph.edge e = 7;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_e_size()); i < n; i++) {
     const auto& repfield = this->_internal_e(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(6, repfield, repfield.GetCachedSize(), target, stream);
+        InternalWriteMessage(7, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -887,16 +830,16 @@ size_t vertex::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .graph.edge e = 6;
+  // repeated .graph.edge e = 7;
   total_size += 1UL * this->_internal_e_size();
   for (const auto& msg : this->_impl_.e_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // int32 id = 1;
+  // uint32 id = 1;
   if (this->_internal_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_id());
   }
 
   // int32 x = 2;
@@ -914,9 +857,14 @@ size_t vertex::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_z());
   }
 
-  // int32 layerid = 5;
+  // uint32 layerid = 5;
   if (this->_internal_layerid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_layerid());
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_layerid());
+  }
+
+  // uint32 type = 6;
+  if (this->_internal_type() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -953,6 +901,9 @@ void vertex::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBU
   if (from._internal_layerid() != 0) {
     _this->_internal_set_layerid(from._internal_layerid());
   }
+  if (from._internal_type() != 0) {
+    _this->_internal_set_type(from._internal_type());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -972,8 +923,8 @@ void vertex::InternalSwap(vertex* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.e_.InternalSwap(&other->_impl_.e_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(vertex, _impl_.layerid_)
-      + sizeof(vertex::_impl_.layerid_)
+      PROTOBUF_FIELD_OFFSET(vertex, _impl_.type_)
+      + sizeof(vertex::_impl_.type_)
       - PROTOBUF_FIELD_OFFSET(vertex, _impl_.id_)>(
           reinterpret_cast<char*>(&_impl_.id_),
           reinterpret_cast<char*>(&other->_impl_.id_));

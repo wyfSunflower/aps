@@ -184,13 +184,13 @@ class edge final :
     kXFieldNumber = 4,
     kYFieldNumber = 5,
     kZFieldNumber = 6,
-    kLayeridFieldNumber = 7,
-    kTheta1FieldNumber = 8,
-    kTheta2FieldNumber = 9,
-    kTypeFieldNumber = 10,
     kEdgeidFieldNumber = 1,
     kStartidFieldNumber = 2,
     kEndidFieldNumber = 3,
+    kZsameFieldNumber = 7,
+    kTypeFieldNumber = 8,
+    kTheta1FieldNumber = 9,
+    kTheta2FieldNumber = 10,
   };
   // repeated int32 x = 4;
   int x_size() const;
@@ -258,119 +258,67 @@ class edge final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
       mutable_z();
 
-  // repeated int32 layerid = 7;
-  int layerid_size() const;
-  private:
-  int _internal_layerid_size() const;
-  public:
-  void clear_layerid();
-  private:
-  int32_t _internal_layerid(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      _internal_layerid() const;
-  void _internal_add_layerid(int32_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      _internal_mutable_layerid();
-  public:
-  int32_t layerid(int index) const;
-  void set_layerid(int index, int32_t value);
-  void add_layerid(int32_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      layerid() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      mutable_layerid();
-
-  // repeated int32 theta1 = 8;
-  int theta1_size() const;
-  private:
-  int _internal_theta1_size() const;
-  public:
-  void clear_theta1();
-  private:
-  int32_t _internal_theta1(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      _internal_theta1() const;
-  void _internal_add_theta1(int32_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      _internal_mutable_theta1();
-  public:
-  int32_t theta1(int index) const;
-  void set_theta1(int index, int32_t value);
-  void add_theta1(int32_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      theta1() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      mutable_theta1();
-
-  // repeated int32 theta2 = 9;
-  int theta2_size() const;
-  private:
-  int _internal_theta2_size() const;
-  public:
-  void clear_theta2();
-  private:
-  int32_t _internal_theta2(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      _internal_theta2() const;
-  void _internal_add_theta2(int32_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      _internal_mutable_theta2();
-  public:
-  int32_t theta2(int index) const;
-  void set_theta2(int index, int32_t value);
-  void add_theta2(int32_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      theta2() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      mutable_theta2();
-
-  // repeated int32 type = 10;
-  int type_size() const;
-  private:
-  int _internal_type_size() const;
-  public:
-  void clear_type();
-  private:
-  int32_t _internal_type(int index) const;
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      _internal_type() const;
-  void _internal_add_type(int32_t value);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      _internal_mutable_type();
-  public:
-  int32_t type(int index) const;
-  void set_type(int index, int32_t value);
-  void add_type(int32_t value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-      type() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-      mutable_type();
-
-  // int32 edgeid = 1;
+  // uint32 edgeid = 1;
   void clear_edgeid();
-  int32_t edgeid() const;
-  void set_edgeid(int32_t value);
+  uint32_t edgeid() const;
+  void set_edgeid(uint32_t value);
   private:
-  int32_t _internal_edgeid() const;
-  void _internal_set_edgeid(int32_t value);
+  uint32_t _internal_edgeid() const;
+  void _internal_set_edgeid(uint32_t value);
   public:
 
-  // int32 startid = 2;
+  // uint32 startid = 2;
   void clear_startid();
-  int32_t startid() const;
-  void set_startid(int32_t value);
+  uint32_t startid() const;
+  void set_startid(uint32_t value);
   private:
-  int32_t _internal_startid() const;
-  void _internal_set_startid(int32_t value);
+  uint32_t _internal_startid() const;
+  void _internal_set_startid(uint32_t value);
   public:
 
-  // int32 endid = 3;
+  // uint32 endid = 3;
   void clear_endid();
-  int32_t endid() const;
-  void set_endid(int32_t value);
+  uint32_t endid() const;
+  void set_endid(uint32_t value);
   private:
-  int32_t _internal_endid() const;
-  void _internal_set_endid(int32_t value);
+  uint32_t _internal_endid() const;
+  void _internal_set_endid(uint32_t value);
+  public:
+
+  // int32 zsame = 7;
+  void clear_zsame();
+  int32_t zsame() const;
+  void set_zsame(int32_t value);
+  private:
+  int32_t _internal_zsame() const;
+  void _internal_set_zsame(int32_t value);
+  public:
+
+  // uint32 type = 8;
+  void clear_type();
+  uint32_t type() const;
+  void set_type(uint32_t value);
+  private:
+  uint32_t _internal_type() const;
+  void _internal_set_type(uint32_t value);
+  public:
+
+  // int32 theta1 = 9;
+  void clear_theta1();
+  int32_t theta1() const;
+  void set_theta1(int32_t value);
+  private:
+  int32_t _internal_theta1() const;
+  void _internal_set_theta1(int32_t value);
+  public:
+
+  // int32 theta2 = 10;
+  void clear_theta2();
+  int32_t theta2() const;
+  void set_theta2(int32_t value);
+  private:
+  int32_t _internal_theta2() const;
+  void _internal_set_theta2(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:graph.edge)
@@ -387,17 +335,13 @@ class edge final :
     mutable std::atomic<int> _y_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > z_;
     mutable std::atomic<int> _z_cached_byte_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > layerid_;
-    mutable std::atomic<int> _layerid_cached_byte_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > theta1_;
-    mutable std::atomic<int> _theta1_cached_byte_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > theta2_;
-    mutable std::atomic<int> _theta2_cached_byte_size_;
-    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > type_;
-    mutable std::atomic<int> _type_cached_byte_size_;
-    int32_t edgeid_;
-    int32_t startid_;
-    int32_t endid_;
+    uint32_t edgeid_;
+    uint32_t startid_;
+    uint32_t endid_;
+    int32_t zsame_;
+    uint32_t type_;
+    int32_t theta1_;
+    int32_t theta2_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -526,14 +470,15 @@ class vertex final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kEFieldNumber = 6,
+    kEFieldNumber = 7,
     kIdFieldNumber = 1,
     kXFieldNumber = 2,
     kYFieldNumber = 3,
     kZFieldNumber = 4,
     kLayeridFieldNumber = 5,
+    kTypeFieldNumber = 6,
   };
-  // repeated .graph.edge e = 6;
+  // repeated .graph.edge e = 7;
   int e_size() const;
   private:
   int _internal_e_size() const;
@@ -551,13 +496,13 @@ class vertex final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::graph::edge >&
       e() const;
 
-  // int32 id = 1;
+  // uint32 id = 1;
   void clear_id();
-  int32_t id() const;
-  void set_id(int32_t value);
+  uint32_t id() const;
+  void set_id(uint32_t value);
   private:
-  int32_t _internal_id() const;
-  void _internal_set_id(int32_t value);
+  uint32_t _internal_id() const;
+  void _internal_set_id(uint32_t value);
   public:
 
   // int32 x = 2;
@@ -587,13 +532,22 @@ class vertex final :
   void _internal_set_z(int32_t value);
   public:
 
-  // int32 layerid = 5;
+  // uint32 layerid = 5;
   void clear_layerid();
-  int32_t layerid() const;
-  void set_layerid(int32_t value);
+  uint32_t layerid() const;
+  void set_layerid(uint32_t value);
   private:
-  int32_t _internal_layerid() const;
-  void _internal_set_layerid(int32_t value);
+  uint32_t _internal_layerid() const;
+  void _internal_set_layerid(uint32_t value);
+  public:
+
+  // uint32 type = 6;
+  void clear_type();
+  uint32_t type() const;
+  void set_type(uint32_t value);
+  private:
+  uint32_t _internal_type() const;
+  void _internal_set_type(uint32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:graph.vertex)
@@ -605,11 +559,12 @@ class vertex final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::graph::edge > e_;
-    int32_t id_;
+    uint32_t id_;
     int32_t x_;
     int32_t y_;
     int32_t z_;
-    int32_t layerid_;
+    uint32_t layerid_;
+    uint32_t type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -626,62 +581,62 @@ class vertex final :
 #endif  // __GNUC__
 // edge
 
-// int32 edgeid = 1;
+// uint32 edgeid = 1;
 inline void edge::clear_edgeid() {
-  _impl_.edgeid_ = 0;
+  _impl_.edgeid_ = 0u;
 }
-inline int32_t edge::_internal_edgeid() const {
+inline uint32_t edge::_internal_edgeid() const {
   return _impl_.edgeid_;
 }
-inline int32_t edge::edgeid() const {
+inline uint32_t edge::edgeid() const {
   // @@protoc_insertion_point(field_get:graph.edge.edgeid)
   return _internal_edgeid();
 }
-inline void edge::_internal_set_edgeid(int32_t value) {
+inline void edge::_internal_set_edgeid(uint32_t value) {
   
   _impl_.edgeid_ = value;
 }
-inline void edge::set_edgeid(int32_t value) {
+inline void edge::set_edgeid(uint32_t value) {
   _internal_set_edgeid(value);
   // @@protoc_insertion_point(field_set:graph.edge.edgeid)
 }
 
-// int32 startid = 2;
+// uint32 startid = 2;
 inline void edge::clear_startid() {
-  _impl_.startid_ = 0;
+  _impl_.startid_ = 0u;
 }
-inline int32_t edge::_internal_startid() const {
+inline uint32_t edge::_internal_startid() const {
   return _impl_.startid_;
 }
-inline int32_t edge::startid() const {
+inline uint32_t edge::startid() const {
   // @@protoc_insertion_point(field_get:graph.edge.startid)
   return _internal_startid();
 }
-inline void edge::_internal_set_startid(int32_t value) {
+inline void edge::_internal_set_startid(uint32_t value) {
   
   _impl_.startid_ = value;
 }
-inline void edge::set_startid(int32_t value) {
+inline void edge::set_startid(uint32_t value) {
   _internal_set_startid(value);
   // @@protoc_insertion_point(field_set:graph.edge.startid)
 }
 
-// int32 endid = 3;
+// uint32 endid = 3;
 inline void edge::clear_endid() {
-  _impl_.endid_ = 0;
+  _impl_.endid_ = 0u;
 }
-inline int32_t edge::_internal_endid() const {
+inline uint32_t edge::_internal_endid() const {
   return _impl_.endid_;
 }
-inline int32_t edge::endid() const {
+inline uint32_t edge::endid() const {
   // @@protoc_insertion_point(field_get:graph.edge.endid)
   return _internal_endid();
 }
-inline void edge::_internal_set_endid(int32_t value) {
+inline void edge::_internal_set_endid(uint32_t value) {
   
   _impl_.endid_ = value;
 }
-inline void edge::set_endid(int32_t value) {
+inline void edge::set_endid(uint32_t value) {
   _internal_set_endid(value);
   // @@protoc_insertion_point(field_set:graph.edge.endid)
 }
@@ -827,214 +782,106 @@ edge::mutable_z() {
   return _internal_mutable_z();
 }
 
-// repeated int32 layerid = 7;
-inline int edge::_internal_layerid_size() const {
-  return _impl_.layerid_.size();
+// int32 zsame = 7;
+inline void edge::clear_zsame() {
+  _impl_.zsame_ = 0;
 }
-inline int edge::layerid_size() const {
-  return _internal_layerid_size();
+inline int32_t edge::_internal_zsame() const {
+  return _impl_.zsame_;
 }
-inline void edge::clear_layerid() {
-  _impl_.layerid_.Clear();
+inline int32_t edge::zsame() const {
+  // @@protoc_insertion_point(field_get:graph.edge.zsame)
+  return _internal_zsame();
 }
-inline int32_t edge::_internal_layerid(int index) const {
-  return _impl_.layerid_.Get(index);
+inline void edge::_internal_set_zsame(int32_t value) {
+  
+  _impl_.zsame_ = value;
 }
-inline int32_t edge::layerid(int index) const {
-  // @@protoc_insertion_point(field_get:graph.edge.layerid)
-  return _internal_layerid(index);
-}
-inline void edge::set_layerid(int index, int32_t value) {
-  _impl_.layerid_.Set(index, value);
-  // @@protoc_insertion_point(field_set:graph.edge.layerid)
-}
-inline void edge::_internal_add_layerid(int32_t value) {
-  _impl_.layerid_.Add(value);
-}
-inline void edge::add_layerid(int32_t value) {
-  _internal_add_layerid(value);
-  // @@protoc_insertion_point(field_add:graph.edge.layerid)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::_internal_layerid() const {
-  return _impl_.layerid_;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::layerid() const {
-  // @@protoc_insertion_point(field_list:graph.edge.layerid)
-  return _internal_layerid();
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::_internal_mutable_layerid() {
-  return &_impl_.layerid_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::mutable_layerid() {
-  // @@protoc_insertion_point(field_mutable_list:graph.edge.layerid)
-  return _internal_mutable_layerid();
+inline void edge::set_zsame(int32_t value) {
+  _internal_set_zsame(value);
+  // @@protoc_insertion_point(field_set:graph.edge.zsame)
 }
 
-// repeated int32 theta1 = 8;
-inline int edge::_internal_theta1_size() const {
-  return _impl_.theta1_.size();
-}
-inline int edge::theta1_size() const {
-  return _internal_theta1_size();
-}
-inline void edge::clear_theta1() {
-  _impl_.theta1_.Clear();
-}
-inline int32_t edge::_internal_theta1(int index) const {
-  return _impl_.theta1_.Get(index);
-}
-inline int32_t edge::theta1(int index) const {
-  // @@protoc_insertion_point(field_get:graph.edge.theta1)
-  return _internal_theta1(index);
-}
-inline void edge::set_theta1(int index, int32_t value) {
-  _impl_.theta1_.Set(index, value);
-  // @@protoc_insertion_point(field_set:graph.edge.theta1)
-}
-inline void edge::_internal_add_theta1(int32_t value) {
-  _impl_.theta1_.Add(value);
-}
-inline void edge::add_theta1(int32_t value) {
-  _internal_add_theta1(value);
-  // @@protoc_insertion_point(field_add:graph.edge.theta1)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::_internal_theta1() const {
-  return _impl_.theta1_;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::theta1() const {
-  // @@protoc_insertion_point(field_list:graph.edge.theta1)
-  return _internal_theta1();
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::_internal_mutable_theta1() {
-  return &_impl_.theta1_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::mutable_theta1() {
-  // @@protoc_insertion_point(field_mutable_list:graph.edge.theta1)
-  return _internal_mutable_theta1();
-}
-
-// repeated int32 theta2 = 9;
-inline int edge::_internal_theta2_size() const {
-  return _impl_.theta2_.size();
-}
-inline int edge::theta2_size() const {
-  return _internal_theta2_size();
-}
-inline void edge::clear_theta2() {
-  _impl_.theta2_.Clear();
-}
-inline int32_t edge::_internal_theta2(int index) const {
-  return _impl_.theta2_.Get(index);
-}
-inline int32_t edge::theta2(int index) const {
-  // @@protoc_insertion_point(field_get:graph.edge.theta2)
-  return _internal_theta2(index);
-}
-inline void edge::set_theta2(int index, int32_t value) {
-  _impl_.theta2_.Set(index, value);
-  // @@protoc_insertion_point(field_set:graph.edge.theta2)
-}
-inline void edge::_internal_add_theta2(int32_t value) {
-  _impl_.theta2_.Add(value);
-}
-inline void edge::add_theta2(int32_t value) {
-  _internal_add_theta2(value);
-  // @@protoc_insertion_point(field_add:graph.edge.theta2)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::_internal_theta2() const {
-  return _impl_.theta2_;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::theta2() const {
-  // @@protoc_insertion_point(field_list:graph.edge.theta2)
-  return _internal_theta2();
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::_internal_mutable_theta2() {
-  return &_impl_.theta2_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::mutable_theta2() {
-  // @@protoc_insertion_point(field_mutable_list:graph.edge.theta2)
-  return _internal_mutable_theta2();
-}
-
-// repeated int32 type = 10;
-inline int edge::_internal_type_size() const {
-  return _impl_.type_.size();
-}
-inline int edge::type_size() const {
-  return _internal_type_size();
-}
+// uint32 type = 8;
 inline void edge::clear_type() {
-  _impl_.type_.Clear();
+  _impl_.type_ = 0u;
 }
-inline int32_t edge::_internal_type(int index) const {
-  return _impl_.type_.Get(index);
-}
-inline int32_t edge::type(int index) const {
-  // @@protoc_insertion_point(field_get:graph.edge.type)
-  return _internal_type(index);
-}
-inline void edge::set_type(int index, int32_t value) {
-  _impl_.type_.Set(index, value);
-  // @@protoc_insertion_point(field_set:graph.edge.type)
-}
-inline void edge::_internal_add_type(int32_t value) {
-  _impl_.type_.Add(value);
-}
-inline void edge::add_type(int32_t value) {
-  _internal_add_type(value);
-  // @@protoc_insertion_point(field_add:graph.edge.type)
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::_internal_type() const {
+inline uint32_t edge::_internal_type() const {
   return _impl_.type_;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
-edge::type() const {
-  // @@protoc_insertion_point(field_list:graph.edge.type)
+inline uint32_t edge::type() const {
+  // @@protoc_insertion_point(field_get:graph.edge.type)
   return _internal_type();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::_internal_mutable_type() {
-  return &_impl_.type_;
+inline void edge::_internal_set_type(uint32_t value) {
+  
+  _impl_.type_ = value;
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
-edge::mutable_type() {
-  // @@protoc_insertion_point(field_mutable_list:graph.edge.type)
-  return _internal_mutable_type();
+inline void edge::set_type(uint32_t value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:graph.edge.type)
+}
+
+// int32 theta1 = 9;
+inline void edge::clear_theta1() {
+  _impl_.theta1_ = 0;
+}
+inline int32_t edge::_internal_theta1() const {
+  return _impl_.theta1_;
+}
+inline int32_t edge::theta1() const {
+  // @@protoc_insertion_point(field_get:graph.edge.theta1)
+  return _internal_theta1();
+}
+inline void edge::_internal_set_theta1(int32_t value) {
+  
+  _impl_.theta1_ = value;
+}
+inline void edge::set_theta1(int32_t value) {
+  _internal_set_theta1(value);
+  // @@protoc_insertion_point(field_set:graph.edge.theta1)
+}
+
+// int32 theta2 = 10;
+inline void edge::clear_theta2() {
+  _impl_.theta2_ = 0;
+}
+inline int32_t edge::_internal_theta2() const {
+  return _impl_.theta2_;
+}
+inline int32_t edge::theta2() const {
+  // @@protoc_insertion_point(field_get:graph.edge.theta2)
+  return _internal_theta2();
+}
+inline void edge::_internal_set_theta2(int32_t value) {
+  
+  _impl_.theta2_ = value;
+}
+inline void edge::set_theta2(int32_t value) {
+  _internal_set_theta2(value);
+  // @@protoc_insertion_point(field_set:graph.edge.theta2)
 }
 
 // -------------------------------------------------------------------
 
 // vertex
 
-// int32 id = 1;
+// uint32 id = 1;
 inline void vertex::clear_id() {
-  _impl_.id_ = 0;
+  _impl_.id_ = 0u;
 }
-inline int32_t vertex::_internal_id() const {
+inline uint32_t vertex::_internal_id() const {
   return _impl_.id_;
 }
-inline int32_t vertex::id() const {
+inline uint32_t vertex::id() const {
   // @@protoc_insertion_point(field_get:graph.vertex.id)
   return _internal_id();
 }
-inline void vertex::_internal_set_id(int32_t value) {
+inline void vertex::_internal_set_id(uint32_t value) {
   
   _impl_.id_ = value;
 }
-inline void vertex::set_id(int32_t value) {
+inline void vertex::set_id(uint32_t value) {
   _internal_set_id(value);
   // @@protoc_insertion_point(field_set:graph.vertex.id)
 }
@@ -1099,27 +946,47 @@ inline void vertex::set_z(int32_t value) {
   // @@protoc_insertion_point(field_set:graph.vertex.z)
 }
 
-// int32 layerid = 5;
+// uint32 layerid = 5;
 inline void vertex::clear_layerid() {
-  _impl_.layerid_ = 0;
+  _impl_.layerid_ = 0u;
 }
-inline int32_t vertex::_internal_layerid() const {
+inline uint32_t vertex::_internal_layerid() const {
   return _impl_.layerid_;
 }
-inline int32_t vertex::layerid() const {
+inline uint32_t vertex::layerid() const {
   // @@protoc_insertion_point(field_get:graph.vertex.layerid)
   return _internal_layerid();
 }
-inline void vertex::_internal_set_layerid(int32_t value) {
+inline void vertex::_internal_set_layerid(uint32_t value) {
   
   _impl_.layerid_ = value;
 }
-inline void vertex::set_layerid(int32_t value) {
+inline void vertex::set_layerid(uint32_t value) {
   _internal_set_layerid(value);
   // @@protoc_insertion_point(field_set:graph.vertex.layerid)
 }
 
-// repeated .graph.edge e = 6;
+// uint32 type = 6;
+inline void vertex::clear_type() {
+  _impl_.type_ = 0u;
+}
+inline uint32_t vertex::_internal_type() const {
+  return _impl_.type_;
+}
+inline uint32_t vertex::type() const {
+  // @@protoc_insertion_point(field_get:graph.vertex.type)
+  return _internal_type();
+}
+inline void vertex::_internal_set_type(uint32_t value) {
+  
+  _impl_.type_ = value;
+}
+inline void vertex::set_type(uint32_t value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:graph.vertex.type)
+}
+
+// repeated .graph.edge e = 7;
 inline int vertex::_internal_e_size() const {
   return _impl_.e_.size();
 }

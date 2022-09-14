@@ -1,10 +1,15 @@
 #ifndef UTIL_H
 #define UTIL_H
+#include <iostream>
 #include <sstream>
 #include <string>
+#include <math.h>
 #include "nlohmann/json.hpp"
 #define DBG printf("__FILE__==%s, __LINE__==%d\n", __FILE__, __LINE__);
-#define WARNING(TYPE) printf("FILE==%s, LINE==%d, TYPE==%s (%d)\n", __FILE__, __LINE__, #TYPE, TYPE); return TYPE;
+#define SILENT 1
+#define WARNING(TYPE) { if(!SILENT) { printf("FILE==%s, LINE==%d, TYPE==%s (%d)\n", __FILE__, __LINE__, #TYPE, TYPE); } return TYPE; }
+#define PI 3.1415927
+#define RAD 57.2957787
 
 template<typename T>
 bool stoT(std::string s, T& t){
@@ -38,6 +43,12 @@ template<typename KeyType, typename... Args>
 bool contains(nlohmann::json& j, KeyType&& k, Args... args){
     if(!j.contains<KeyType>(k)) return false;
     return contains(j, args...);
+}
+
+template<typename ValueType>
+ValueType getd(nlohmann::json& j, const std::string& key, const ValueType& V){
+    if(j.contains(key)) return j[key].get<ValueType>();
+    return V;
 }
 
 template<typename T, T...>
@@ -149,6 +160,12 @@ struct converter<T, typename std::enable_if<seqhelper<T>::seq, void>::type>{
 template<typename T>
 std::string stlout(const T& x){
     return converter<T>().convert(x);
+}
+
+template<typename T>
+T gettheta(T x, T y){
+    double theta = atan2((double)y, (double)x);
+    return (T)(::round(theta*RAD*1000));
 }
 
 

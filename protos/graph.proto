@@ -2,23 +2,24 @@ syntax = "proto3";
 package graph;
 
 message edge{
-    int32 edgeid = 1;
-    int32 startid = 2;
-    int32 endid = 3;
+    uint32 edgeid = 1;
+    uint32 startid = 2;
+    uint32 endid = 3;
     repeated int32 x = 4;
     repeated int32 y = 5;
     repeated int32 z = 6;
-    repeated int32 layerid = 7;
-    repeated int32 theta1 = 8;
-    repeated int32 theta2 = 9;
-    repeated int32 type = 10;
+    int32 zsame = 7;
+    uint32 type = 8;
+    int32 theta1 = 9;
+    int32 theta2 = 10;
 }
 
 message vertex{
-    int32 id = 1;
+    uint32 id = 1;
     int32 x = 2;
     int32 y = 3;
     int32 z = 4;
-    int32 layerid = 5;
-    repeated edge e = 6;
+    uint32 layerid = 5;
+    uint32 type = 6;
+    repeated edge e = 7;
 }
