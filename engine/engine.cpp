@@ -22,10 +22,17 @@ namespace pipeline{
     int engine::parse(nlohmann::json& graph){
         //硬编码
         if(!initial) clear(); //如果不是最开始的状态, 清空
+        parallel = true;
         initial = false;
         parsed = false; //不能保证parse成功, 先将parsed置为false, 成功再改为true.
+        if(graph.contains("parallel") && CHECK_TYPE(graph["parallel"], "bool")){
+            parallel = (graph["parallel"].get<bool>() != 0);
+        }
         for(auto it = graph.begin(); it != graph.end(); ++it){
             std::string key = it.key();
+            if(key == "parallel"){
+                continue;
+            }
             bool ok = true;
             size_t k = getNonNegativeInteger(key, ok);
             if(!ok){
@@ -160,6 +167,26 @@ namespace pipeline{
     bool engine::run_p(){
         //using std::async
         //TODO
+        for(auto it = layer2ids.begin(); it != layer2ids.end(); ++it){
+            if(it -> first == 0) continue;
+            std::map<size_t, std::future<std::any>> idx2f;
+            for(size_t idx: it->second){
+                idx2f[idx] = std::async([this, idx, it]()->std::any{
+                    std::set<size_t>& pre = pr[idx];
+                    std::vector<std::any*> va;
+                    std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
+                        return &storage[x];
+                    });
+                    return id2f[idx]->operator()(va, gs);
+                });
+            }
+            for(size_t idx: it->second){
+                storage[idx] = std::move(idx2f[idx].get());
+                if(!storage[idx].has_value()){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -167,7 +194,7 @@ namespace pipeline{
         if(!parsed){
             return false;
         }
-        if(PARALLEL){
+        if(parallel){
             return run_p();
         }else{
             return run_s();

@@ -22,14 +22,14 @@ size_t getNonNegativeInteger(std::string s, bool& ok);
 
 #define TYPE(j) \
 ( \
-    j.type() == nlohmann::json::value_t::null ? "null": \
-    j.type() == nlohmann::json::value_t::boolean ? "bool": \
-    j.type() == nlohmann::json::value_t::number_unsigned ? "unsigned": \
-    j.type() == nlohmann::json::value_t::number_integer ? "int": \
-    j.type() == nlohmann::json::value_t::number_float ? "float": \
-    j.type() == nlohmann::json::value_t::object ? "object": \
-    j.type() == nlohmann::json::value_t::array ? "array": \
-    j.type() == nlohmann::json::value_t::string? "string":"unknown" \
+    (j).type() == nlohmann::json::value_t::null ? "null": \
+    (j).type() == nlohmann::json::value_t::boolean ? "bool": \
+    (j).type() == nlohmann::json::value_t::number_unsigned ? "unsigned": \
+    (j).type() == nlohmann::json::value_t::number_integer ? "int": \
+    (j).type() == nlohmann::json::value_t::number_float ? "float": \
+    (j).type() == nlohmann::json::value_t::object ? "object": \
+    (j).type() == nlohmann::json::value_t::array ? "array": \
+    (j).type() == nlohmann::json::value_t::string? "string":"unknown" \
 )
 
 #define CHECK_TYPE(x, y) (std::string(TYPE(x)) == std::string(y))

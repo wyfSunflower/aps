@@ -97,7 +97,7 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     }
     //注意jsonparseudf都是相同的, 都是没有问题的。
     //注意由于没有使用std::boolalpha, 输出0代表false, 输出1代表true.
-    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
+    e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
     COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
     /*
     e(j1) == 1
@@ -115,7 +115,15 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     */
     COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n"; //1
     COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
-    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
+
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
+    COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
+    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n"; //1
+    COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
+
+    e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
     COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
     /*
     程序进入到这里的if中:
@@ -136,6 +144,14 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     */
     COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
     COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
+
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
+    COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
+    COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
+    COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
+
     e.parse("{\"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
     COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
     COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
@@ -156,5 +172,12 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     目前engine的提示还做得不好。
     */
     COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";//1
+
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
+    COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
+    COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
+    COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";//0
     return 0;
 }

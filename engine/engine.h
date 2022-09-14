@@ -4,6 +4,7 @@
 #include <set>
 #include <memory>
 #include <string>
+#include <future>
 #include "../protos/global.pb.h"
 #include "../protos/graph.pb.h"
 #include "../global/global.h"
@@ -20,7 +21,7 @@
 #define TOPOLOGICAL_SORTING_FAILED 6
 #define ID_NOT_FOUND 7
 
-#define PARALLEL 0
+#define PARALLEL 1
 
 #define STRAIGHT 0
 #define BEZIER 1
@@ -40,7 +41,7 @@
 namespace pipeline{
 class engine{
 private:
-    bool initial, parsed;
+    bool initial, parsed, parallel;
     size_t root;
     std::map<size_t, std::shared_ptr<udf>> id2f;
     std::map<size_t, size_t> id2layer;
@@ -52,7 +53,7 @@ private:
     std::map<std::string, std::shared_ptr<udf>> custom_invoke;
     engine& operator=(const engine&);
 public:
-    engine(): initial(true), parsed(false), root(0){reg();}
+    engine(): initial(true), parsed(false), parallel(true), root(0){reg();}
     engine(engine&)=delete;
     engine(engine&&)=delete;
     std::any operator[](size_t idx);
@@ -80,6 +81,9 @@ public:
     template<typename T> bool operator()(T&& initial){
         storage[root] = std::move(initial);
         return this -> operator()();
+    }
+    bool is_parallel(){
+        return parallel;
     }
 };
 
