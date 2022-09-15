@@ -60,10 +60,10 @@ int test_engine(std::istream* in, std::ostream* out){
 
 int test_pipeline1(std::istream* in, std::ostream* out){
     pipeline::engine e;
-    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
     e = 1;
     e();
-    COUT << std::any_cast<int>(e[3]) << "\n";
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
     return 0;
 }
 
