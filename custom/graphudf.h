@@ -4,7 +4,7 @@
 #include "../global/global.h"
 
 struct graphudf:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs){
+    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G g;
         if(!j.contains("nodes")){
@@ -15,10 +15,14 @@ struct graphudf:public udf{
         g.readG(j["nodes"]);
         return std::any(std::move(g));
     }
+
+    void retry(pipeline::engine* caller, int idx, int call_layer){
+
+    }
 };
 
 struct graphudf2:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs){
+    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G g;
         std::any a;
@@ -37,10 +41,14 @@ struct graphudf2:public udf{
         g.readG(j["nodes"]);
         return std::any(std::move(g));
     }
+
+    void retry(pipeline::engine* caller, int idx, int call_layer){
+
+    }
 };
 
 struct graphudf3:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs){
+    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G g;
         std::any a;
@@ -58,6 +66,10 @@ struct graphudf3:public udf{
         }
         g.readG(j["nodes"]);
         return g.get_valid() ? std::any(std::move(g)): std::any();
+    }
+
+    void retry(pipeline::engine* caller, int idx, int call_layer){
+
     }
 };
 

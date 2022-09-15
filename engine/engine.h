@@ -5,6 +5,7 @@
 #include <memory>
 #include <string>
 #include <future>
+#include <queue>
 #include "../protos/global.pb.h"
 #include "../protos/graph.pb.h"
 #include "../global/global.h"
@@ -36,13 +37,16 @@
 #define S_TYPE "type"
 #define S_OUTEDGES "outEdges"
 #define S_CURVE "curvePoints"
+#define WITHLOG true
 
 
 namespace pipeline{
 class engine{
 private:
     bool initial, parsed, parallel;
-    size_t root;
+    size_t root, failtimes;
+    std::string log; //运行日志
+    std::map<size_t, std::string> id2fname;
     std::map<size_t, std::shared_ptr<udf>> id2f;
     std::map<size_t, size_t> id2layer;
     std::map<size_t, std::set<size_t>> layer2ids;
@@ -52,8 +56,17 @@ private:
     std::map<size_t, std::any> storage;
     std::map<std::string, std::shared_ptr<udf>> custom_invoke;
     engine& operator=(const engine&);
+    void initialize_priority_queue(std::vector<size_t>& startnodes, std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>>& pq, std::set<size_t>& inpq); //初始化优先队列
+    bool run_s_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate); //串行计算
+    bool run_p_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate); //模块间并行
+    std::function<void(std::vector<std::any*>&, size_t)> tf = [this](std::vector<std::any*>& va, size_t idx){
+        std::set<size_t>& pre = pr[idx];
+        std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
+            return &storage[x];
+        });
+    };
 public:
-    engine(): initial(true), parsed(false), parallel(true), root(0){reg();}
+    engine(): initial(true), parsed(false), parallel(true), root(0), failtimes(0){reg();}
     engine(engine&)=delete;
     engine(engine&&)=delete;
     std::any operator[](size_t idx);
@@ -65,12 +78,13 @@ public:
         storage[root] = std::move(initial);
         return *this;
     }
-    void clear(){id2f.clear(); id2layer.clear(); layer2ids.clear(); ch.clear(); pr.clear(); storage.clear();}
+    void clear(){id2fname.clear(); id2f.clear(); id2layer.clear(); layer2ids.clear(); ch.clear(); pr.clear(); storage.clear();}
     void reg();
     int parse(nlohmann::json& graph);
     int parse(std::string& s);
     int parse(std::string&& s);
     std::string debug();
+    void copy(size_t src, size_t dst, bool use_move_semantics);
     bool run_s(); //串行计算
     bool run_p(); //模块间并行
     bool operator()();
@@ -84,6 +98,9 @@ public:
     }
     bool is_parallel(){
         return parallel;
+    }
+    std::string getlog(){
+        return log;
     }
 };
 

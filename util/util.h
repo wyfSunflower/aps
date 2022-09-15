@@ -6,6 +6,7 @@
 #include <math.h>
 #include "nlohmann/json.hpp"
 #define DBG printf("__FILE__==%s, __LINE__==%d\n", __FILE__, __LINE__);
+#define DBGSTR (std::string(__FILE__) + ", line" + std::to_string(__LINE__) + ":") 
 #define SILENT 1
 #define WARNING(TYPE) { if(!SILENT) { printf("FILE==%s, LINE==%d, TYPE==%s (%d)\n", __FILE__, __LINE__, #TYPE, TYPE); } return TYPE; }
 #define PI 3.1415927
@@ -167,6 +168,8 @@ T gettheta(T x, T y){
     double theta = atan2((double)y, (double)x);
     return (T)(::round(theta*RAD*1000));
 }
+
+std::string timeStr();
 
 
 #endif

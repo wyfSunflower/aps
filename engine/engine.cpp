@@ -25,6 +25,7 @@ namespace pipeline{
         parallel = true;
         initial = false;
         parsed = false; //不能保证parse成功, 先将parsed置为false, 成功再改为true.
+        log = "";
         if(graph.contains("parallel") && CHECK_TYPE(graph["parallel"], "bool")){
             parallel = (graph["parallel"].get<bool>() != 0);
         }
@@ -58,6 +59,7 @@ namespace pipeline{
                 if(custom_invoke.find(fids) == custom_invoke.end()){
                     WARNING(CUSTOM_INVOKE_FUNCTION_NOT_FOUND);
                 }
+                id2fname[k] = fids;
                 id2f[k] = custom_invoke[fids];
                 int sz = prea.size();
                 for(int i = 0; i < sz; ++i){
@@ -146,38 +148,110 @@ namespace pipeline{
         return res;
     }
 
-    bool engine::run_s(){
-        for(auto it = layer2ids.begin(); it != layer2ids.end(); ++it){
-            if(it -> first == 0) continue;
-            for(int idx: it->second){
-                std::set<size_t>& pre = pr[idx];
+    void engine::copy(size_t src, size_t dst, bool use_move_semantics){
+        if(storage.find(src) != storage.end()){
+            if(!use_move_semantics) storage[dst] = storage[src];
+            else storage[dst] = std::move(storage[src]);
+        }
+    }
+    
+    void engine::initialize_priority_queue(std::vector<size_t>& startnodes, std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>>& pq, std::set<size_t>& inpq){
+        //pair形如(layerid, nodeid)
+        //先按拓扑排序的层排序, 再按顶点编号排序。其实顶点编号可以不用排序, 但层**一定**要排序, 所以干脆放到pair里面去
+        
+        for(size_t startnode: startnodes){
+            pq.push({id2layer[startnode], startnode});
+            inpq.insert(startnode); //防止重复加入队列
+        }
+    }
+
+    bool engine::run_s_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate){
+        /*
+        startnodes: 运算开始的节点
+        runninglog: true-记录日志 false-不记录日志
+        call_layer: 调用层级, 初始为0
+        terminate: 当terminate对应的节点计算完成后推出, 不必等所有节点计算完成。terminate==-1代表完整运行计算图
+        */
+        std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>> pq;
+        std::set<size_t> inpq;
+        if(runninglog){
+            log += DBGSTR + "[" + timeStr() + " run_s_internal]: startnodes==" + stlout(startnodes) + ", call_layer==" + std::to_string(call_layer) + ", terminate==" + std::to_string(terminate) + ".\n";
+        }
+        initialize_priority_queue(startnodes, pq, inpq);
+        while(!pq.empty()){
+            auto [layer, idx] = pq.top();
+            pq.pop();
+            if(runninglog) log += "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx)}. pq.size()==" + std::to_string(pq.size()) + "\n";
+            if(idx != root){
                 std::vector<std::any*> va;
-                std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
-                    return &storage[x];
-                });
-                storage[idx] = std::move(id2f[idx]->operator()(va, gs));
-                if(!storage[idx].has_value()){
+                tf(va, idx);
+                id2f[idx]->verdict = CORRECT;
+                std::any&& tmp = id2f[idx]->operator()(va, gs, idx);
+                if(!tmp.has_value()){
+                    if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because result (type any).has_value() == false!\n";
                     return false;
+                }else if(id2f[idx]->verdict == WRONG){
+                    if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==WRONG! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==WRONG!\n";
+                    
+                }else if(id2f[idx]->verdict == NOT_CALCULATED){
+                    if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==NOT_CALCULATED! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==NOT_CALCULATED! Now return false!\n";
+                    ++id2f[idx]->failtimes;
+                    ++failtimes;
+                    id2f[idx]->retry(this, idx, call_layer);
+                    return false;
+                }else if((int)idx == terminate){
+                    if(runninglog) log += DBGSTR +"[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful, reach terminate " + std::to_string(terminate) + ", return true.\n";
+                    storage[idx] = std::move(tmp);
+                    return true;
+                }
+                log += DBGSTR +"[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful.\n";
+                storage[idx] = tmp;
+            }
+            for(size_t c: ch[idx]){
+                if(inpq.find(c) == inpq.end()){
+                    pq.push({id2layer[c], c});
+                    inpq.insert(c);
                 }
             }
         }
         return true;
     }
 
+    bool engine::run_p_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate){
+        /*
+        startnodes: 运算开始的节点
+        runninglog: true-记录日志 false-不记录日志
+        call_layer: 调用层级, 初始为0
+        */
+        std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>> pq;
+        std::set<size_t> inpq;
+        if(runninglog){
+            log += "[" + timeStr() + " run_p_internal]: startnodes==" + stlout(startnodes) + ", call_layer==" + std::to_string(call_layer) + ".\n";
+        }
+        initialize_priority_queue(startnodes, pq, inpq);
+        return true;
+    }
+
+    bool engine::run_s(){
+        failtimes = 0;
+        log = "";
+        std::vector<size_t> startnodes = {root};
+        return run_s_internal(startnodes, WITHLOG, 0, -1);
+    }
+
     bool engine::run_p(){
         //using std::async
         //TODO
+        failtimes = 0;
+        log = "";
         for(auto it = layer2ids.begin(); it != layer2ids.end(); ++it){
             if(it -> first == 0) continue;
             std::map<size_t, std::future<std::any>> idx2f;
             for(size_t idx: it->second){
                 idx2f[idx] = std::async([this, idx, it]()->std::any{
-                    std::set<size_t>& pre = pr[idx];
                     std::vector<std::any*> va;
-                    std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
-                        return &storage[x];
-                    });
-                    return id2f[idx]->operator()(va, gs);
+                    tf(va, idx);
+                    return id2f[idx]->operator()(va, gs, idx);
                 });
             }
             for(size_t idx: it->second){

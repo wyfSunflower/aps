@@ -15,4 +15,5 @@ int test_engine(std::istream* in, std::ostream* out);
 int test_pipeline1(std::istream* in, std::ostream* out); //相加求和
 int test_G(std::istream* in, std::ostream* out);
 int test_pipeline_graph(std::istream* in, std::ostream* out); //解析json并建图
+int test_copy(std::istream* in, std::ostream* out);
 #endif

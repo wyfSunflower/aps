@@ -4,7 +4,7 @@
 #include "../global/global.h"
 
 struct jsonparseudf:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs){
+    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
         nlohmann::json j;
         try{
             j = nlohmann::json::parse(std::any_cast<std::string>(*pre[0]));
@@ -12,6 +12,10 @@ struct jsonparseudf:public udf{
             return std::any();
         }
         return std::any(std::move(j));
+    }
+
+    void retry(pipeline::engine* caller, int idx, int call_layer){
+
     }
 };
 

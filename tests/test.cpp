@@ -99,85 +99,94 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     //注意由于没有使用std::boolalpha, 输出0代表false, 输出1代表true.
     e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
     COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
-    /*
-    e(j1) == 1
-    程序进入到这里的if中:
-    if(!j.contains("nodes")){
-        //这个udf专门提取nodes
-        g.set_valid(false);
-        return g;
-    }
-    虽然g.valid == false, 但对应的std::any时有值的, 不会触发
-    if(!storage[idx].has_value()){
-        return false;
-    }
-    导致返回false
-    */
-    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n"; //1
+    COUT << "j1==" << j1 << "\n";
+    //e(j1) == 1
+    //程序进入到这里的if中:
+    //if(!j.contains("nodes")){
+    //    g.set_valid(false);
+    //    return g;
+    //}
+    //虽然g.valid == false, 但对应的std::any时有值的, 不会触发
+    //if(!storage[idx].has_value()){
+    //    return false;
+    //}
+    //导致返回false
+    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
     COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
     COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
-
+    COUT << e.getlog() << " e.getlog()\n";
+    
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
     COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
-    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n"; //1
+    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
     COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
     COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
+    COUT << e.getlog() << " e.getlog()\n";
 
     e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
     COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
-    /*
-    程序进入到这里的if中:
-    std::any a;
-    if(!j.contains("nodes")){
-        //这个udf专门提取nodes
-        g.set_valid(false);
-        return a;
-    }
-    返回了一个空的any, 导致
-    storage[idx] = std::move(id2f[idx]->operator()(va, gs));
-    中storage[idx].has_value() == false
-    从而进入以下if
-    if(!storage[idx].has_value()){
-        return false;
-    }
-    返回0.
-    */
+    //程序进入到这里的if中:
+    //std::any a;
+    //if(!j.contains("nodes")){
+    //    g.set_valid(false);
+    //    return a;
+    //}
+    //返回了一个空的any, 导致
+    //storage[idx] = std::move(id2f[idx]->operator()(va, gs));
+    //中storage[idx].has_value() == false
+    //从而进入以下if
+    //if(!storage[idx].has_value()){
+    //    return false;
+    //}
+    //返回0.
     COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
     COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
     COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
+    COUT << e.getlog() << " e.getlog()\n";
 
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
     COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
     COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
     COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
     COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
+    COUT << e.getlog() << " e.getlog()\n";
 
     e.parse("{\"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
     COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
     COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
-    /*
-    在graphudf3中:
-    这里由于把"nid"写成了"nidbug", g.readG(j["nodes"]);会导致g.valid == false, 因为:
-    if(!contains(tmpe, S_NID)){//S_NID就是"nid", 找不到"nid"(只有"nidbug")会导致这里valid为false
-        valid = false;
-        WARNING(JSON_PARSE_ERROR);
-    }
-    在仿函数的return语句中:
-    return g.get_valid() ? std::any(std::move(g)): std::any();
-    绝对会返回一个空的std::any(), 因为g.get_valid()变成了false。这样又触发了
-    if(!storage[idx].has_value()){
-        return false;
-    }
-    返回0.
-    目前engine的提示还做得不好。
-    */
+    //在graphudf3中:
+    //这里由于把"nid"写成了"nidbug", g.readG(j["nodes"]);会导致g.valid == false, 因为:
+    //if(!contains(tmpe, S_NID)){//S_NID就是"nid", 找不到"nid"(只有"nidbug")会导致这里valid为false
+    //    valid = false;
+    //    WARNING(JSON_PARSE_ERROR);
+    //}
+    //在仿函数的return语句中:
+    //return g.get_valid() ? std::any(std::move(g)): std::any();
+    //绝对会返回一个空的std::any(), 因为g.get_valid()变成了false。这样又触发了
+    //if(!storage[idx].has_value()){
+    //    return false;
+    //}
+    //返回0.
     COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
     COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
 
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
     COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
     COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
     COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
     COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";//0
+    COUT << e.getlog() << " e.getlog()\n";
+    return 0;
+}
+
+int test_copy(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
+    e = 1;
+    e.copy(0, 1, false);
+    COUT << e[0].has_value() << "\n";
+    e.copy(0, 1, true);
+    COUT << e[0].has_value() << "\n";
     return 0;
 }
