@@ -16,8 +16,8 @@ struct graphudf:public udf{
         return std::any(std::move(g));
     }
 
-    void retry(pipeline::engine* caller, int idx, int call_layer){
-
+    bool retry(pipeline::engine* caller, int idx, int call_layer){
+        return false;
     }
 };
 
@@ -42,8 +42,8 @@ struct graphudf2:public udf{
         return std::any(std::move(g));
     }
 
-    void retry(pipeline::engine* caller, int idx, int call_layer){
-
+    bool retry(pipeline::engine* caller, int idx, int call_layer){
+        return false;
     }
 };
 
@@ -68,8 +68,8 @@ struct graphudf3:public udf{
         return g.get_valid() ? std::any(std::move(g)): std::any();
     }
 
-    void retry(pipeline::engine* caller, int idx, int call_layer){
-
+    bool retry(pipeline::engine* caller, int idx, int call_layer){
+        return true;
     }
 };
 

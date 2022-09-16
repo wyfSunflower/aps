@@ -60,9 +60,11 @@ int test_engine(std::istream* in, std::ostream* out){
 
 int test_pipeline1(std::istream* in, std::ostream* out){
     pipeline::engine e;
+    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
+    e(1);
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}");
-    e = 1;
-    e();
+    e(1);
     COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
     return 0;
 }
@@ -98,8 +100,8 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     //注意jsonparseudf都是相同的, 都是没有问题的。
     //注意由于没有使用std::boolalpha, 输出0代表false, 输出1代表true.
     e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
-    COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
-    COUT << "j1==" << j1 << "\n";
+    COUT << "TEST GROUP 1\n";
+    COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";//1
     //e(j1) == 1
     //程序进入到这里的if中:
     //if(!j.contains("nodes")){
@@ -111,20 +113,28 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     //    return false;
     //}
     //导致返回false
-    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
-    COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
-    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
+    //因此返回true
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n\n";
     
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf\"}}");
-    COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";
-    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
-    COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
-    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
+    COUT << "TEST GROUP 2\n";
+    COUT << "[Using graphudf]run result of j1: " << e(j1) << "\n";//1
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf]run result of j2: " << e(j2) << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1 (true)
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n\n";
 
     e.parse("{\"parallel\": true, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
+    COUT << "TEST GROUP 3\n";
     COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
+    COUT << e.getlog() << " e.getlog()\n";
     //程序进入到这里的if中:
     //std::any a;
     //if(!j.contains("nodes")){
@@ -140,19 +150,25 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     //}
     //返回0.
     COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
-    COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
-    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n\n";
 
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf2\"}}");
+    COUT << "TEST GROUP 4\n";
     COUT << "[Using graphudf2]run result of j1: " << e(j1) << "\n";//0
-    COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
-    COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
-    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf2]run result of j2: " << e(j2) << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf2]run result of j3: " << e(j3) << "\n";//1, j3完全正常, 无论如何都返回1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n\n";
 
     e.parse("{\"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
+    COUT << "TEST GROUP 5\n";
     COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
+    COUT << e.getlog() << " e.getlog()\n";
     COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
     //在graphudf3中:
     //这里由于把"nid"写成了"nidbug", g.readG(j["nodes"]);会导致g.valid == false, 因为:
@@ -167,16 +183,20 @@ int test_pipeline_graph(std::istream* in, std::ostream* out){
     //    return false;
     //}
     //返回0.
-    COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
-    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n";//1
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 1)==" << e.is_parallel() << "\n\n";//1
 
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"jsonparseudf\"}, \"2\": {\"pre\": [1], \"fid\": \"graphudf3\"}}");
+    COUT << "TEST GROUP 6\n";
     COUT << "[Using graphudf3]run result of j1: " << e(j1) << "\n";//0
-    COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
-    COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
-    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n";//0
     COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf3]run result of j2: " << e(j2) << "\n";//0
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "[Using graphudf3]run result of j3: " << e(j3) << "\n";//1
+    COUT << e.getlog() << " e.getlog()\n";
+    COUT << "e.parallel (should be 0)==" << e.is_parallel() << "\n\n";//0
     return 0;
 }
 

@@ -17,7 +17,7 @@ struct udf{
     int verdict;
     udf():failtimes(0), verdict(NOT_CALCULATED){}
     virtual std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx) = 0;
-    virtual void retry(pipeline::engine* caller, int idx, int call_layer) = 0;
+    virtual bool retry(pipeline::engine* caller, int idx, int call_layer) = 0;
 };
 
 #endif

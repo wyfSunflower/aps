@@ -12,8 +12,8 @@ struct exampleudf:public udf{
         }
         return x;
     }
-    void retry(pipeline::engine* caller, int idx, int call_layer){
-
+    bool retry(pipeline::engine* caller, int idx, int call_layer){
+        return false;
     }
 };
 

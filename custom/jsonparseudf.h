@@ -14,8 +14,8 @@ struct jsonparseudf:public udf{
         return std::any(std::move(j));
     }
 
-    void retry(pipeline::engine* caller, int idx, int call_layer){
-
+    bool retry(pipeline::engine* caller, int idx, int call_layer){
+        return false;
     }
 };
 

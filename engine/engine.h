@@ -12,7 +12,7 @@
 #include "../util/util.h"
 #include "nlohmann/json.hpp"
 
-#define REGISTER(classname) custom_invoke[#classname] = std::make_shared<classname>();
+#define REGISTER(classname) custom_invoke[#classname] = [](void)->std::shared_ptr<udf>{ return std::make_shared<classname>(); };
 #define PARSE_OK 0
 #define JSON_PARSE_ERROR 1
 #define CUSTOM_INVOKE_FUNCTION_NOT_FOUND 2
@@ -54,11 +54,11 @@ private:
     std::map<size_t, std::set<size_t>> pr; //previous
     global::globalstate gs;
     std::map<size_t, std::any> storage;
-    std::map<std::string, std::shared_ptr<udf>> custom_invoke;
+    std::map<std::string, std::function<std::shared_ptr<udf>(void)>> custom_invoke;
     engine& operator=(const engine&);
     void initialize_priority_queue(std::vector<size_t>& startnodes, std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>>& pq, std::set<size_t>& inpq); //初始化优先队列
-    bool run_s_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate); //串行计算
-    bool run_p_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, int terminate); //模块间并行
+    bool run_s_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, bool run_already_calculated); //串行计算
+    bool run_p_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, bool run_already_calculated); //模块间并行
     std::function<void(std::vector<std::any*>&, size_t)> tf = [this](std::vector<std::any*>& va, size_t idx){
         std::set<size_t>& pre = pr[idx];
         std::transform(pre.begin(), pre.end(), std::back_inserter(va), [&](size_t x)->std::any*{
