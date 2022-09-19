@@ -4,19 +4,20 @@
 #include "../custom/exampleudf.h"
 #include "../custom/graphudf.h"
 #include "../custom/jsonparseudf.h"
+#include "../custom/retryudf.h"
 #include "../util/util.h"
 
 namespace pipeline{
     void engine::reg(){
         REGISTER(exampleudf);
+        REGISTER(exampleudf2);
         REGISTER(graphudf);
         REGISTER(graphudf2);
         REGISTER(graphudf3);
         REGISTER(jsonparseudf);
-    }
-
-    std::any engine::operator[](size_t idx){
-        return storage[idx];
+        REGISTER(retryudf);
+        REGISTER(retryudf2);
+        REGISTER(retryudf3);
     }
 
     int engine::parse(nlohmann::json& graph){
@@ -72,8 +73,8 @@ namespace pipeline{
                         printf("k==prei==%zu\n", k);
                         WARNING(DEADLOCK_ERROR);
                     }
-                    ch[prei].insert(k);
-                    pr[k].insert(prei);
+                    ch[prei].push_back(k);
+                    pr[k].push_back(prei);
                 }
             }catch(nlohmann::json::parse_error& ex){
                 WARNING(JSON_PARSE_ERROR);
@@ -85,7 +86,7 @@ namespace pipeline{
         id2layer[root] = 0;
         layer2ids[0] = {root};
         for(auto it = pr.begin(); it != pr.end(); ++it){
-            std::set<size_t>& tmp = it -> second;
+            std::vector<size_t>& tmp = it -> second;
             for(auto tmppre: tmp){
                 if(tmppre != 0 && pr[tmppre].size() == 0){
                     printf("pr[%zu].size()==%zu\n", tmppre, pr[tmppre].size());
@@ -119,9 +120,6 @@ namespace pipeline{
             WARNING(TOPOLOGICAL_SORTING_FAILED);
         }
         parsed = true;
-        for(auto it = id2f.begin(); it != id2f.end(); ++it){
-            it->second->verdict = NOT_CALCULATED;
-        }
         return PARSE_OK;
     }
 
@@ -158,17 +156,19 @@ namespace pipeline{
         }
     }
     
-    void engine::initialize_priority_queue(std::vector<size_t>& startnodes, std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>>& pq, std::set<size_t>& inpq){
+    void engine::initialize_priority_queue(const std::vector<size_t>& startnodes, std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>>& pq, std::set<size_t>& inpq, size_t call_layer, bool run_already_calculated){
         //pair形如(layerid, nodeid)
         //先按拓扑排序的层排序, 再按顶点编号排序。其实顶点编号可以不用排序, 但层**一定**要排序, 所以干脆放到pair里面去
         
-        for(size_t startnode: startnodes){
-            pq.push({id2layer[startnode], startnode});
-            inpq.insert(startnode); //防止重复加入队列
+        for(size_t c: startnodes){
+            if(inpq.find(c) == inpq.end() && (c == 0 || (run_already_calculated && id2f[c]->verdict[0] != NOT_CALCULATED) || (!run_already_calculated && id2f[c]->verdict[0] == NOT_CALCULATED))){
+                pq.push({id2layer[c], c});
+                inpq.insert(c); //防止重复加入队列
+            }
         }
     }
 
-    bool engine::run_s_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, bool run_already_calculated){
+    bool engine::run_s_internal(const std::vector<size_t>& startnodes, bool runninglog, size_t call_layer, bool run_already_calculated){
         /*
         startnodes: 运算开始的节点
         runninglog: true-记录日志 false-不记录日志
@@ -180,36 +180,45 @@ namespace pipeline{
         if(runninglog){
             log += DBGSTR + "[" + timeStr() + " run_s_internal]: startnodes==" + stlout(startnodes) + ", call_layer==" + std::to_string(call_layer) + ".\n";
         }
-        initialize_priority_queue(startnodes, pq, inpq);
+        initialize_priority_queue(startnodes, pq, inpq, call_layer, run_already_calculated);
         while(!pq.empty()){
             auto [layer, idx] = pq.top();
             pq.pop();
             if(runninglog) log += "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx)}. pq.size()==" + std::to_string(pq.size()) + "\n";
             if(idx != root){
+                for(size_t x: pr[idx]){
+                    if(!storage[x].has_value()){
+                        if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: launch(" + std::to_string(idx) + ") failed because storage[" + std::to_string(x) + "] does not hold a value!\n";
+                        return false; 
+                    }
+                }
                 std::vector<std::any*> va;
                 tf(va, idx);
-                id2f[idx]->verdict = CORRECT;
-                std::any&& tmp = id2f[idx]->operator()(va, gs, idx);
+                id2f[idx]->verdict[call_layer] = CORRECT;
+                std::any&& tmp = id2f[idx]->operator()(va, g, idx, call_layer);
                 if(!tmp.has_value()){
                     if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because result (type any).has_value() == false!\n";
                     return false;
-                }else if(id2f[idx]->verdict == WRONG){
+                }else if(id2f[idx]->verdict[call_layer] == WRONG){
                     if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==WRONG! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==WRONG!\n";
                     ++id2f[idx]->failtimes;
                     ++failtimes;
-                    if(id2f[idx]->retry(this, idx, call_layer)){
-                        if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} returns because `retry` returns true.\n";
-                        return true;
-                    }
-                }else if(id2f[idx]->verdict == NOT_CALCULATED){
+                    bool res = id2f[idx]->retry(this, idx, call_layer);
+                    retryresult[{call_layer, idx}] = res;
+                }else if(id2f[idx]->verdict[call_layer] == NOT_CALCULATED){
                     if(runninglog) log += DBGSTR + "[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==NOT_CALCULATED! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==NOT_CALCULATED! Now return false!\n";
                     return false;
                 }
                 log += DBGSTR +"[" + timeStr() + " run_s_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful.\n";
-                storage[idx] = tmp;
+                if(id2f[idx]->verdict[call_layer] == CORRECT) {
+                    storage[idx] = tmp;
+                    if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful. Verdict==" + std::to_string(id2f[idx]->verdict[call_layer]) + "[Stored]\n";
+                }else{
+                    if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} unsuccessful.\n";
+                }
             }
             for(size_t c: ch[idx]){
-                if(inpq.find(c) == inpq.end() && (idx == root || (run_already_calculated && id2f[c]->verdict != NOT_CALCULATED) || (!run_already_calculated && id2f[c]->verdict == NOT_CALCULATED))){
+                if(inpq.find(c) == inpq.end() && (idx == root || (run_already_calculated && id2f[c]->verdict[0] != NOT_CALCULATED) || (!run_already_calculated && id2f[c]->verdict[0] == NOT_CALCULATED))){
                     pq.push({id2layer[c], c});
                     inpq.insert(c);//避免重复加入队列
                 }
@@ -218,17 +227,17 @@ namespace pipeline{
         return true;
     }
 
-    bool engine::run_p_internal(std::vector<size_t>& startnodes, bool runninglog, int call_layer, bool run_already_calculated){
+    bool engine::run_p_internal(const std::vector<size_t>& startnodes, bool runninglog, size_t call_layer, bool run_already_calculated){
         /*
         startnodes: 运算开始的节点
         runninglog: true-记录日志 false-不记录日志
         call_layer: 调用层级, 初始为0
         */
-        auto async_parallel = [this](size_t idx)->std::any{
+        auto async_parallel = [this, call_layer](size_t idx)->std::any{
             std::vector<std::any*> va;
             tf(va, idx);
-            id2f[idx]->verdict = CORRECT;
-            return id2f[idx]->operator()(va, gs, idx);
+            id2f[idx]->verdict[call_layer] = CORRECT;
+            return id2f[idx]->operator()(va, g, idx, call_layer);
         };
 
         std::priority_queue<std::pair<size_t, size_t>, std::vector<std::pair<size_t, size_t>>, std::greater<std::pair<size_t, size_t>>> pq;
@@ -236,7 +245,7 @@ namespace pipeline{
         if(runninglog){
             log += "[" + timeStr() + " run_p_internal]: startnodes==" + stlout(startnodes) + ", call_layer==" + std::to_string(call_layer) + ".\n";
         }
-        initialize_priority_queue(startnodes, pq, inpq);
+        initialize_priority_queue(startnodes, pq, inpq, call_layer, run_already_calculated);
         while(!pq.empty()){
             std::vector<std::pair<size_t, size_t>> samelayer;
             auto t = pq.top();
@@ -255,6 +264,12 @@ namespace pipeline{
                 size_t idx = layer_idx_pair.second;
                 if(idx != root){
                     if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: launch(" + std::to_string(idx) + ").\n";
+                    for(size_t x: pr[idx]){
+                        if(!storage[x].has_value()){
+                            if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: launch(" + std::to_string(idx) + ") failed because storage[" + std::to_string(x) + "] does not hold a value!\n";
+                            return false; 
+                        }
+                    }
                     idx2f[idx] = std::async(async_parallel, idx);
                 }
             }
@@ -265,23 +280,25 @@ namespace pipeline{
                     if(!tmp.has_value()){
                         if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because result (type any).has_value() == false!\n";
                         return false;
-                    }else if(id2f[idx]->verdict == WRONG){
+                    }else if(id2f[idx]->verdict[call_layer] == WRONG){
                         if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==WRONG! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==WRONG!\n";
                         ++id2f[idx]->failtimes;
                         ++failtimes;
-                        if(id2f[idx]->retry(this, idx, call_layer)){
-                            if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} returns because `retry` returns true.\n";
-                            return true;
-                        }
-                    }else if(id2f[idx]->verdict == NOT_CALCULATED){
+                        bool res = id2f[idx]->retry(this, idx, call_layer);
+                        retryresult[{call_layer, idx}] = res;
+                    }else if(id2f[idx]->verdict[call_layer] == NOT_CALCULATED){
                         if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} failed because verdict==NOT_CALCULATED! Call " + std::to_string(idx) + " (" + id2fname[idx] + ") verdict==NOT_CALCULATED! Now return false!\n";
                         return false;
                     }
-                    log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful.\n";
-                    storage[idx] = tmp;
+                    if(id2f[idx]->verdict[call_layer] == CORRECT) {
+                        storage[idx] = tmp;
+                        if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} successful. Verdict==" + std::to_string(id2f[idx]->verdict[call_layer]) + "[Stored]\n";
+                    }else{
+                        if(runninglog) log += DBGSTR + "[" + timeStr() + " run_p_internal]: Handle {" + std::to_string(layer_idx_pair.first) + " (layer), " + std::to_string(idx) + " (idx), " + std::to_string(call_layer) + " (call_layer)} unsuccessful.\n";
+                    }
                 }
                 for(size_t c: ch[idx]){
-                    if(inpq.find(c) == inpq.end() && ((run_already_calculated && id2f[c]->verdict != NOT_CALCULATED) || (!run_already_calculated && id2f[c]->verdict == NOT_CALCULATED))){
+                    if(inpq.find(c) == inpq.end() && ((run_already_calculated && id2f[c]->verdict[0] != NOT_CALCULATED) || (!run_already_calculated && id2f[c]->verdict[0] == NOT_CALCULATED))){
                         pq.push({id2layer[c], c});
                         inpq.insert(c);//避免重复加入队列
                         log += DBGSTR + "[" + timeStr() + " run_p_internal]: Push" + stlout(std::pair<size_t, size_t>(id2layer[c], c)) + ".\n";
@@ -295,7 +312,8 @@ namespace pipeline{
     bool engine::run_s(){
         if(!parsed) return false;
         for(auto it = id2f.begin(); it != id2f.end(); ++it){
-            it->second->verdict = NOT_CALCULATED;
+            it->second->isparallel = false;
+            it->second->verdict[0] = NOT_CALCULATED;
         }
         failtimes = 0;
         log = "";
@@ -306,7 +324,8 @@ namespace pipeline{
     bool engine::run_p(){
         if(!parsed) return false;
         for(auto it = id2f.begin(); it != id2f.end(); ++it){
-            it->second->verdict = NOT_CALCULATED;
+            it->second->isparallel = true;
+            it->second->verdict[0] = NOT_CALCULATED;
         }
         failtimes = 0;
         log = "";

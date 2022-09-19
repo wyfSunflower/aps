@@ -69,6 +69,19 @@ int test_pipeline1(std::istream* in, std::ostream* out){
     return 0;
 }
 
+int test_pipeline2_withtimeguard(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf2\"}}");
+    e(1);
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
+    COUT << e.getpointer(3)->duration << " [duration of 3]\n";
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf2\"}}");
+    e(1);
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
+    COUT << e.getpointer(3)->duration << " [duration of 3]\n";
+    return 0;
+}
+
 int test_G(std::istream* in, std::ostream* out){
     pipeline::G g;
     std::string j;
@@ -208,5 +221,39 @@ int test_copy(std::istream* in, std::ostream* out){
     COUT << e[0].has_value() << "\n";
     e.copy(0, 1, true);
     COUT << e[0].has_value() << "\n";
+    return 0;
+}
+
+int test_retry1(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"2\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"3\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"4\": {\"pre\": [1, 2], \"fid\": \"retryudf\"}, \"5\": {\"pre\": [2, 3], \"fid\": \"retryudf\"}, \"6\": {\"pre\": [0, 4, 5], \"fid\": \"retryudf\"}}") << "\n";
+    e(1);
+    COUT << std::any_cast<int>(e[6]) << " e[6]\n";
+    COUT << e.getlog() << "\n";
+    return 0;
+}
+
+int test_retry2(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudf2\"}, \"2\": {\"pre\": [1], \"fid\": \"retryudf2\"}, \"3\": {\"pre\": [2], \"fid\": \"retryudf2\"}}") << "\n";
+    e(1);
+    COUT << std::any_cast<int>(e[0]) << " (e[0]) " << std::any_cast<int>(e[1]) << " (e[1]) " << std::any_cast<int>(e[2]) << " (e[2]) " << std::any_cast<int>(e[3]) << " (e[3])\n";
+    //1 (e[0]) 1 (e[1]) 2 (e[2]) 3 (e[3])
+    COUT << e.getlog() << "\n";
+    return 0;
+}
+
+int test_retry3(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudf3\"}, \"2\": {\"pre\": [0], \"fid\": \"retryudf3\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"retryudf3\"}}") << "\n";
+    const int C = 5000;
+    double res = 0.0, res2 = 0.0;
+    for(int i = 0; i < C; ++i){
+        e.reset();
+        e((size_t)1);
+        res2 = e[3].has_value()?(double)(std::any_cast<size_t>(e[3])):0.0;
+        res += res2;
+    }
+    COUT << "Randomized result: " << res/C << " " << res << " " << C << "\n";
     return 0;
 }

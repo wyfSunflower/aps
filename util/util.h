@@ -158,7 +158,7 @@ struct converter<T, typename std::enable_if<seqhelper<T>::seq, void>::type>{
     }
 };
 
-template<typename T>
+template<typename T> //stl->std::string
 std::string stlout(const T& x){
     return converter<T>().convert(x);
 }
@@ -171,5 +171,15 @@ T gettheta(T x, T y){
 
 std::string timeStr();
 
+template<typename BaseType, typename T>
+void vaargs(std::vector<BaseType>& container, T&& arg){
+    container.push_back((BaseType)arg);
+}
+
+template<typename BaseType, typename T, typename... Args>
+void vaargs(std::vector<BaseType>& container, T&& arg, Args&&... args){
+    container.push_back((BaseType)arg);
+    vaargs(container, std::forward<Args>(args)...);
+}
 
 #endif

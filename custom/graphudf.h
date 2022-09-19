@@ -4,31 +4,31 @@
 #include "../global/global.h"
 
 struct graphudf:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
-        pipeline::G g;
+        pipeline::G gr;
         if(!j.contains("nodes")){
             //这个udf专门提取nodes
-            g.set_valid(false);
+            gr.set_valid(false);
             return g;
         }
-        g.readG(j["nodes"]);
-        return std::any(std::move(g));
+        gr.readG(j["nodes"]);
+        return std::any(std::move(gr));
     }
 
-    bool retry(pipeline::engine* caller, int idx, int call_layer){
+    bool retry(pipeline::engine* caller, size_t idx, size_t call_layer){
         return false;
     }
 };
 
 struct graphudf2:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
-        pipeline::G g;
+        pipeline::G gr;
         std::any a;
         if(!j.contains("nodes")){
             //这个udf专门提取nodes
-            g.set_valid(false);
+            gr.set_valid(false);
             /*
             因为a.has_value()==false, 因此会触发
             if(!storage[idx].has_value()){
@@ -38,23 +38,23 @@ struct graphudf2:public udf{
             */
             return a; 
         }
-        g.readG(j["nodes"]);
-        return std::any(std::move(g));
+        gr.readG(j["nodes"]);
+        return std::any(std::move(gr));
     }
 
-    bool retry(pipeline::engine* caller, int idx, int call_layer){
+    bool retry(pipeline::engine* caller, size_t idx, size_t call_layer){
         return false;
     }
 };
 
 struct graphudf3:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::globalstate& gs, int idx){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
-        pipeline::G g;
+        pipeline::G gr;
         std::any a;
         if(!j.contains("nodes")){
             //这个udf专门提取nodes
-            g.set_valid(false);
+            gr.set_valid(false);
             /*
             因为a.has_value()==false, 因此会触发
             if(!storage[idx].has_value()){
@@ -64,11 +64,11 @@ struct graphudf3:public udf{
             */
             return a; 
         }
-        g.readG(j["nodes"]);
-        return g.get_valid() ? std::any(std::move(g)): std::any();
+        gr.readG(j["nodes"]);
+        return gr.get_valid() ? std::any(std::move(gr)): std::any();
     }
 
-    bool retry(pipeline::engine* caller, int idx, int call_layer){
+    bool retry(pipeline::engine* caller, size_t idx, size_t call_layer){
         return true;
     }
 };
