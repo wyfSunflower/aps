@@ -4,7 +4,7 @@
 #include "../global/global.h"
 
 struct graphudf:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer, pipeline::engine* caller){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G gr;
         if(!j.contains("nodes")){
@@ -22,7 +22,7 @@ struct graphudf:public udf{
 };
 
 struct graphudf2:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer, pipeline::engine* caller){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G gr;
         std::any a;
@@ -48,7 +48,7 @@ struct graphudf2:public udf{
 };
 
 struct graphudf3:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer, pipeline::engine* caller){
         nlohmann::json j = std::move(std::any_cast<nlohmann::json>(*pre[0]));
         pipeline::G gr;
         std::any a;

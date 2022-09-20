@@ -1,29 +1,32 @@
-2 [2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==2
-E:\graph_simulator\engine\engine.cpp, line258:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 3}.
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 3}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(3).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 3 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+2 [2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==0.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{1, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==2
+E:\graph_simulator\engine\engine.h, line121:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({1, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{2, 3}.
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {1 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({2, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {2 (layer), 3 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
 
 0 [duration of 3]
-2 E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 2 (idx)}. pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 3 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 3 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 3 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+2 [2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==0.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{1, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==2
+E:\graph_simulator\engine\engine.h, line121:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({1, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{2, 3}.
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {1 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({2, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {2 (layer), 3 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
 
 0 [duration of 3]

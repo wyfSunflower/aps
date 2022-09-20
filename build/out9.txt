@@ -1,0 +1,86 @@
+Parse 0
+1 (e[0]) 1 (e[1]) 2 (e[2]) 3 (e[3])
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==0.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line147:[2022-09-20 19:19:52 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because verdict==WRONG! Call 2 (retryudf2) verdict==WRONG!
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==1.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {1 (layer), 1 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {2 (layer), 2 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line161:[2022-09-20 19:19:52 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} unsuccessful (verdict==1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_p_internal]: The result of {2 (layer), 2 (idx), 0 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{3, 3}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({3, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line147:[2022-09-20 19:19:52 run_p_internal]: Handle {3 (layer), 3 (idx), 0 (call_layer)} failed because verdict==WRONG! Call 3 (retryudf2) verdict==WRONG!
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={1}, call_layer==1.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_p_internal]: The result of {1 (layer), 1 (idx), 1 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_p_internal]: The result of {2 (layer), 2 (idx), 1 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_p_internal]: Push{3, 3}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_p_internal]: samelayer.push_back({3, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_p_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_p_internal]: Handle {3 (layer), 3 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line161:[2022-09-20 19:19:52 run_p_internal]: Handle {3 (layer), 3 (idx), 0 (call_layer)} unsuccessful (verdict==1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_p_internal]: The result of {3 (layer), 3 (idx), 0 (call_layer)} is not stored because result of layer1 has already been stored.
+
+Parse 0
+1 (e[0]) 1 (e[1]) 2 (e[2]) 3 (e[3])
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==0.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line147:[2022-09-20 19:19:52 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because verdict==WRONG! Call 2 (retryudf2) verdict==WRONG!
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={0}, call_layer==1.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{1, 1}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {1 (layer), 1 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {2 (layer), 2 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line161:[2022-09-20 19:19:52 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} unsuccessful (verdict==1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_s_internal]: The result of {2 (layer), 2 (idx), 0 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{3, 3}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({3, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line147:[2022-09-20 19:19:52 run_s_internal]: Handle {3 (layer), 3 (idx), 0 (call_layer)} failed because verdict==WRONG! Call 3 (retryudf2) verdict==WRONG!
+[2022-09-20 19:19:52 run_p_internal]: startnodes=={1}, call_layer==1.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_s_internal]: The result of {1 (layer), 1 (idx), 1 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{2, 2}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(2).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_s_internal]: The result of {2 (layer), 2 (idx), 1 (call_layer)} is not stored because result of layer1 has already been stored.
+E:\graph_simulator\engine\engine.h, line171:[2022-09-20 19:19:52 run_s_internal]: Push{3, 3}.
+E:\graph_simulator\engine\engine.h, line115:[2022-09-20 19:19:52 run_s_internal]: samelayer.push_back({3, 3}), pq.size()==1
+E:\graph_simulator\engine\engine.h, line129:[2022-09-20 19:19:52 run_s_internal]: launch(3).
+E:\graph_simulator\engine\engine.h, line158:[2022-09-20 19:19:52 run_s_internal]: Handle {3 (layer), 3 (idx), 1 (call_layer)} successful. Verdict==2[Stored]
+E:\graph_simulator\engine\engine.h, line161:[2022-09-20 19:19:52 run_s_internal]: Handle {3 (layer), 3 (idx), 0 (call_layer)} unsuccessful (verdict==1).
+E:\graph_simulator\engine\engine.h, line163:[2022-09-20 19:19:52 run_s_internal]: The result of {3 (layer), 3 (idx), 0 (call_layer)} is not stored because result of layer1 has already been stored.
+

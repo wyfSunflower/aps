@@ -1,213 +1,130 @@
-TEST GROUP 1
-[Using graphudf]run result of j1: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf]run result of j2: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf]run result of j3: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 1)==1
+6 vertices in total.
+======[id:50001]======
+coordinate: (1000, 1000, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==3
 
-TEST GROUP 2
-[Using graphudf]run result of j1: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf]run result of j2: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf]run result of j3: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 0)==0
+(0, 50001, 50004) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==0, theta1==-90000, theta2==-90000
+Points through which this edge passes:
+(1000, 1000, 11) [x, y, z]
+(1000, 0, 11) [x, y, z]
 
-TEST GROUP 3
-[Using graphudf2]run result of j1: 0
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line281:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf2]run result of j2: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf2]run result of j3: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 1)==1
+(1, 50001, 50010) [edgeid, startid, endid]
+[Edgeid: 1]: zsame==1, type==0, theta1==96528, theta2==96528
+Points through which this edge passes:
+(1000, 1000, 11) [x, y, z]
+(786, 2870, 11) [x, y, z]
 
-TEST GROUP 4
-[Using graphudf2]run result of j1: 0
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line200:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf2]run result of j2: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-[Using graphudf2]run result of j3: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 0)==0
+(2, 50001, 50003) [edgeid, startid, endid]
+[Edgeid: 2]: zsame==1, type==1, theta1==96528, theta2==-4908
+Points through which this edge passes:
+(1000, 1000, 11) [x, y, z]
+(786, 2870, 11) [x, y, z]
+(1556, 3124, 11) [x, y, z]
+(3000, 3000, 11) [x, y, z]
 
-TEST GROUP 5
-[Using graphudf3]run result of j1: 0
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line281:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf3]run result of j2: 0
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line281:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf3]run result of j3: 1
-[2022-09-19 19:30:59 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.cpp, line304:[2022-09-19 19:30:59 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.cpp, line252:[2022-09-19 19:30:59 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.cpp, line266:[2022-09-19 19:30:59 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.cpp, line295:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 1)==1
+======[id:50003]======
+coordinate: (3000, 3000, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==2
 
-TEST GROUP 6
-[Using graphudf3]run result of j1: 0
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line200:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf3]run result of j2: 0
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line200:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
- e.getlog()
-[Using graphudf3]run result of j3: 1
-E:\graph_simulator\engine\engine.cpp, line181:[2022-09-19 19:30:59 run_s_internal]: startnodes=={0}, call_layer==0.
-[2022-09-19 19:30:59 run_s_internal]: Handle {0 (layer), 0 (idx)}. pq.size()==0
-[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx)}. pq.size()==0
-E:\graph_simulator\engine\engine.cpp, line212:[2022-09-19 19:30:59 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful.
-E:\graph_simulator\engine\engine.cpp, line215:[2022-09-19 19:30:59 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
- e.getlog()
-e.parallel (should be 0)==0
+(0, 50003, 50001) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==1, theta1==175092, theta2==-82566
+Points through which this edge passes:
+(3000, 3000, 11) [x, y, z]
+(1556, 3124, 11) [x, y, z]
+(756, 2870, 11) [x, y, z]
+(1000, 1000, 11) [x, y, z]
 
+(1, 50003, 50005) [edgeid, startid, endid]
+[Edgeid: 1]: zsame==1, type==0, theta1==0, theta2==0
+Points through which this edge passes:
+(3000, 3000, 11) [x, y, z]
+(5000, 3000, 11) [x, y, z]
+
+======[id:50004]======
+coordinate: (1000, 0, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==2
+
+(0, 50004, 50001) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==0, theta1==90000, theta2==90000
+Points through which this edge passes:
+(1000, 0, 11) [x, y, z]
+(1000, 1000, 11) [x, y, z]
+
+(1, 50004, 50006) [edgeid, startid, endid]
+[Edgeid: 1]: zsame==1, type==0, theta1==0, theta2==0
+Points through which this edge passes:
+(1000, 0, 11) [x, y, z]
+(4000, 0, 11) [x, y, z]
+
+======[id:50005]======
+coordinate: (5000, 3000, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==2
+
+(0, 50005, 50003) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==0, theta1==180000, theta2==180000
+Points through which this edge passes:
+(5000, 3000, 11) [x, y, z]
+(3000, 3000, 11) [x, y, z]
+
+(1, 50005, 50006) [edgeid, startid, endid]
+[Edgeid: 1]: zsame==1, type==1, theta1==-164932, theta2==-163329
+Points through which this edge passes:
+(5000, 3000, 11) [x, y, z]
+(4870, 2965, 11) [x, y, z]
+(5476, 442, 11) [x, y, z]
+(4000, 0, 11) [x, y, z]
+
+======[id:50006]======
+coordinate: (4000, 0, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==2
+
+(0, 50006, 50004) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==0, theta1==180000, theta2==180000
+Points through which this edge passes:
+(4000, 0, 11) [x, y, z]
+(1000, 0, 11) [x, y, z]
+
+(1, 50006, 50005) [edgeid, startid, endid]
+[Edgeid: 1]: zsame==1, type==1, theta1==16671, theta2==15068
+Points through which this edge passes:
+(4000, 0, 11) [x, y, z]
+(5476, 442, 11) [x, y, z]
+(4870, 2965, 11) [x, y, z]
+(5000, 3000, 11) [x, y, z]
+
+======[id:50010]======
+coordinate: (786, 2870, 11, 1) [x, y, z, layerid]
+type: 1
+Debugging edges, size==1
+
+(0, 50010, 50001) [edgeid, startid, endid]
+[Edgeid: 0]: zsame==1, type==0, theta1==-83472, theta2==-83472
+Points through which this edge passes:
+(786, 2870, 11) [x, y, z]
+(1000, 1000, 11) [x, y, z]
+
+DebugThetaHash:
+======[id:50001]======
+theta: -90000, edges==[{"edgeid": "0", "endid": "50004"}]
+theta: 96528, edges==[{"edgeid": "1", "endid": "50010"}, {"edgeid": "2", "endid": "50003"}]
+======[id:50003]======
+theta: 0, edges==[{"edgeid": "1", "endid": "50005"}]
+theta: 175092, edges==[{"edgeid": "0", "endid": "50001"}]
+======[id:50004]======
+theta: 0, edges==[{"edgeid": "1", "endid": "50006"}]
+theta: 90000, edges==[{"edgeid": "0", "endid": "50001"}]
+======[id:50005]======
+theta: -164932, edges==[{"edgeid": "1", "endid": "50006"}]
+theta: 180000, edges==[{"edgeid": "0", "endid": "50003"}]
+======[id:50006]======
+theta: 16671, edges==[{"edgeid": "1", "endid": "50005"}]
+theta: 180000, edges==[{"edgeid": "0", "endid": "50004"}]
+======[id:50010]======
+theta: -83472, edges==[{"edgeid": "0", "endid": "50001"}]
+Finished.

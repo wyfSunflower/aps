@@ -50,7 +50,7 @@ struct udf{
     std::chrono::time_point<std::chrono::steady_clock> end;
     size_t duration;
     udf():isparallel(true), failtimes(0), duration(0){}
-    virtual std::any operator()(std::vector<std::any*>& pre, global::global& gs, size_t idx, size_t call_layer) = 0;
+    virtual std::any operator()(std::vector<std::any*>& pre, global::global& gs, size_t idx, size_t call_layer, pipeline::engine* caller) = 0;
     virtual bool retry(pipeline::engine* caller, size_t idx, size_t call_layer) = 0;
 };
 

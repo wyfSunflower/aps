@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <typeinfo>
 #include <math.h>
 #include "nlohmann/json.hpp"
 #define DBG printf("__FILE__==%s, __LINE__==%d\n", __FILE__, __LINE__);
@@ -181,5 +182,58 @@ void vaargs(std::vector<BaseType>& container, T&& arg, Args&&... args){
     container.push_back((BaseType)arg);
     vaargs(container, std::forward<Args>(args)...);
 }
+
+struct serial_inner_helper{
+    std::any A;
+    std::any&& get(){
+        return std::move(A);
+    }
+    serial_inner_helper& operator=(std::any&& anotherA){
+        A = std::forward<std::any>(anotherA);
+        return *this;
+    }
+	serial_inner_helper(std::any&& anotherA){
+		A = std::forward<std::any>(anotherA);
+	}
+    serial_inner_helper& operator=(serial_inner_helper&& ih){
+        A = std::move(ih.A);
+        return *this;
+    }
+	serial_inner_helper(serial_inner_helper&& ih){
+		A = std::move(ih.A);
+	}
+    serial_inner_helper()=default;
+};
+
+
+template<typename T>
+struct anyhelper{
+    bool hasvalue, valid;
+    size_t Tid, anytypeid;
+    std::string what;
+    T value;
+    anyhelper()=delete;
+    anyhelper(const anyhelper&)=delete;
+    anyhelper(const std::any& A, bool move=false):hasvalue(A.has_value()), valid(false), Tid(typeid(T).hash_code()), anytypeid(0){
+        if(A.has_value()){
+            anytypeid = A.type().hash_code();
+            if(anytypeid == Tid){
+                valid = true;
+                what = "ok";
+                try{
+                    value = move ? std::move(std::any_cast<T>(A)) : std::move(std::any_cast<T>(A));
+                }catch(const std::bad_any_cast& e){
+                    what = e.what();
+                    valid = false;
+                }
+            }else{
+                what = "Tid==" + std::to_string(Tid) + ", anytypeid==" + std::to_string(anytypeid) + ", Ttype==" + std::string(typeid(T).name()) + ", anytype==" + std::string(A.type().name()) + ", not match!";
+            }
+        }else{
+            what = "A.has_value() == false";
+        }
+    }
+    anyhelper(const serial_inner_helper& ih, bool move=false):anyhelper(ih.A, move){}
+};
 
 #endif

@@ -4,7 +4,7 @@
 #include "../global/global.h"
 
 struct jsonparseudf:public udf{
-    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer){
+    std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer, pipeline::engine* caller){
         nlohmann::json j;
         try{
             j = nlohmann::json::parse(std::any_cast<std::string>(*pre[0]));

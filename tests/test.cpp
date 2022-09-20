@@ -1,7 +1,7 @@
 #include "test.h"
 //CIN: (*in)
 //COUT: (*out)
-int test(std::string&& infile, std::string&& outfile, std::function<int(std::istream*, std::ostream*)> fn){
+int test(const std::string& infile, const std::string& outfile, std::function<int(std::istream*, std::ostream*)> fn){
     std::istream* in = &std::cin;
     std::ostream* out = &std::cout;
     std::ifstream inf;
@@ -76,6 +76,19 @@ int test_pipeline2_withtimeguard(std::istream* in, std::ostream* out){
     COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
     COUT << e.getpointer(3)->duration << " [duration of 3]\n";
     e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf2\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf2\"}}");
+    e(1);
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
+    COUT << e.getpointer(3)->duration << " [duration of 3]\n";
+    return 0;
+}
+
+int test_pipeline3_withtimeguard(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    e.parse("{\"1\": {\"pre\": [0], \"fid\": \"exampleudf3\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf3\"}, \"3\": {\"pre\": [2, 1], \"fid\": \"exampleudf3\"}}");
+    e(1);
+    COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
+    COUT << e.getpointer(3)->duration << " [duration of 3]\n";
+    e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"exampleudf3\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf3\"}, \"3\": {\"pre\": [2, 1], \"fid\": \"exampleudf3\"}}");
     e(1);
     COUT << std::any_cast<int>(e[3]) << " " << e.getlog() << "\n";
     COUT << e.getpointer(3)->duration << " [duration of 3]\n";
@@ -228,6 +241,12 @@ int test_retry1(std::istream* in, std::ostream* out){
     pipeline::engine e;
     COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"2\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"3\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"4\": {\"pre\": [1, 2], \"fid\": \"retryudf\"}, \"5\": {\"pre\": [2, 3], \"fid\": \"retryudf\"}, \"6\": {\"pre\": [0, 4, 5], \"fid\": \"retryudf\"}}") << "\n";
     e(1);
+    anyhelper<int> ah(e[6]);
+    COUT << ah.value << " " << ah.valid << " " << ah.what << "\n";
+    COUT << std::any_cast<int>(e[6]) << " e[6]\n";
+    COUT << e.getlog() << "\n";
+    COUT << "Parse " << e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"2\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"3\": {\"pre\": [0], \"fid\": \"retryudf\"}, \"4\": {\"pre\": [1, 2], \"fid\": \"retryudf\"}, \"5\": {\"pre\": [2, 3], \"fid\": \"retryudf\"}, \"6\": {\"pre\": [0, 4, 5], \"fid\": \"retryudf\"}}") << "\n";
+    e(1);
     COUT << std::any_cast<int>(e[6]) << " e[6]\n";
     COUT << e.getlog() << "\n";
     return 0;
@@ -236,6 +255,11 @@ int test_retry1(std::istream* in, std::ostream* out){
 int test_retry2(std::istream* in, std::ostream* out){
     pipeline::engine e;
     COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudf2\"}, \"2\": {\"pre\": [1], \"fid\": \"retryudf2\"}, \"3\": {\"pre\": [2], \"fid\": \"retryudf2\"}}") << "\n";
+    e(1);
+    COUT << std::any_cast<int>(e[0]) << " (e[0]) " << std::any_cast<int>(e[1]) << " (e[1]) " << std::any_cast<int>(e[2]) << " (e[2]) " << std::any_cast<int>(e[3]) << " (e[3])\n";
+    //1 (e[0]) 1 (e[1]) 2 (e[2]) 3 (e[3])
+    COUT << e.getlog() << "\n";
+    COUT << "Parse " << e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"retryudf2\"}, \"2\": {\"pre\": [1], \"fid\": \"retryudf2\"}, \"3\": {\"pre\": [2], \"fid\": \"retryudf2\"}}") << "\n";
     e(1);
     COUT << std::any_cast<int>(e[0]) << " (e[0]) " << std::any_cast<int>(e[1]) << " (e[1]) " << std::any_cast<int>(e[2]) << " (e[2]) " << std::any_cast<int>(e[3]) << " (e[3])\n";
     //1 (e[0]) 1 (e[1]) 2 (e[2]) 3 (e[3])
@@ -255,5 +279,61 @@ int test_retry3(std::istream* in, std::ostream* out){
         res += res2;
     }
     COUT << "Randomized result: " << res/C << " " << res << " " << C << "\n";
+    COUT << "Parse " << e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"retryudf3\"}, \"2\": {\"pre\": [0], \"fid\": \"retryudf3\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"retryudf3\"}}") << "\n";
+    res = 0.0, res2 = 0.0;
+    for(int i = 0; i < C; ++i){
+        e.reset();
+        e((size_t)1);
+        res2 = e[3].has_value()?(double)(std::any_cast<size_t>(e[3])):0.0;
+        res += res2;
+    }
+    COUT << "Randomized result: " << res/C << " " << res << " " << C << "\n";
+    return 0;
+}
+
+int test_retrybug(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    COUT << "Parse " << e.parse("{\"2\": {\"pre\": [0], \"fid\": \"retryudfrunsbug\"}, \"1\": {\"pre\": [0], \"fid\": \"retryudfrunsbug\"}}") << "\n";
+    e((size_t)0);
+    COUT << e.getlog() << " e.getlog()\n"; 
+    anyhelper<size_t> ahp(e[2]);
+    COUT << ahp.value << " " << ahp.valid << " " << ahp.what << "\n";
+    COUT << "Parse " << e.parse("{\"parallel\": false, \"2\": {\"pre\": [0], \"fid\": \"retryudfrunsbug\"}, \"1\": {\"pre\": [0], \"fid\": \"retryudfrunsbug\"}}") << "\n";
+    e((size_t)0);
+    COUT << e.getlog() << " e.getlog()\n"; 
+    anyhelper<size_t> ahs(e[2]);
+    COUT << ahs.value << " " << ahs.valid << " " << ahs.what << "\n";
+    return 0;
+}
+
+int test_retrynotwork(std::istream* in, std::ostream* out){
+    pipeline::engine e;
+    COUT << "Parse " << e.parse("{\"1\": {\"pre\": [0], \"fid\": \"retryudfnotwork\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}") << "\n";
+    e(0);
+    COUT << e.getlog() << " e.getlog()\n"; 
+    COUT << "Parse " << e.parse("{\"parallel\": false, \"1\": {\"pre\": [0], \"fid\": \"retryudfnotwork\"}, \"2\": {\"pre\": [0], \"fid\": \"exampleudf\"}, \"3\": {\"pre\": [1, 2], \"fid\": \"exampleudf\"}}") << "\n";
+    e(0);
+    COUT << e.getlog() << " e.getlog()\n"; 
+    return 0;
+}
+
+int test_anyhelper(std::istream* in, std::ostream* out){
+    std::any x = 1;
+    anyhelper<int> ah1(x);
+    COUT << ah1.value << " " << ah1.valid << " " << ah1.what << "\n";//1 1 ok
+    anyhelper<size_t> ah2(x);
+    COUT << ah2.value << " " << ah2.valid << " " << ah2.what << "\n";//707063182048 0 Tid==15160494916537613830, anytypeid==6253375586064260614, Ttype==y, anytype==i, not match!
+    //注意: int本身转成size_t没问题, 但对于持有int类型的std::any, 转成size_t类型会出异常。
+    //注意, 如果valid==0, value就是随机值。
+    serial_inner_helper sih(std::move(x));
+    COUT << x.has_value() << "\n";//0
+    anyhelper<int> ah3(sih);
+    COUT << ah3.value << " " << ah3.valid << " " << ah3.what << "\n";//1 1 ok
+    sih.get();
+    anyhelper<int> ah4(sih);
+    COUT << ah4.value << " " << ah4.valid << " " << ah4.what << "\n";//1 1 ok. 注意get虽然调用std::move返回一个右值引用, 但是std::move本身不会掏空对象, 而只有调用了相应的移动构造和移动赋值才会掏空对象。
+    std::any tmp = sih.get();//sih中的std::any A对象被掏空
+    anyhelper<int> ah5(sih);
+    COUT << ah5.value << " " << ah5.valid << " " << ah5.what << "\n";//-87172504 0 A.has_value() == false
     return 0;
 }
