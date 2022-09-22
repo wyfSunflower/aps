@@ -221,7 +221,7 @@ struct anyhelper{
                 valid = true;
                 what = "ok";
                 try{
-                    value = move ? std::move(std::any_cast<T>(A)) : std::move(std::any_cast<T>(A));
+                    value = move ? std::move(std::any_cast<T>(A)) : std::any_cast<T>(A);
                 }catch(const std::bad_any_cast& e){
                     what = e.what();
                     valid = false;

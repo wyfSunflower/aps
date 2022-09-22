@@ -57,12 +57,7 @@ struct retryudf3:public udf{
     int retrytimes, maxretries;
     retryudf3(): x(0), retrytimes(0), maxretries(100000000){}
     std::any operator()(std::vector<std::any*>& pre, global::global& g, size_t idx, size_t call_layer, pipeline::engine* caller){
-        using namespace std::chrono_literals;
-        if(idx==3) std::this_thread::sleep_for(1us); 
-        size_t seed = (size_t)std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-        std::default_random_engine generator(seed);
-        std::uniform_int_distribution<int> distributionInteger(0, 29);
-        int r = distributionInteger(generator);
+        int r = rand();
         for(std::any* a: pre){
             x += std::any_cast<size_t>(*a);
         }

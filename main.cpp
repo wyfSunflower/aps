@@ -9,6 +9,7 @@
 using namespace std;
 
 int main(void){
+    srand(time(NULL));
     //输入输出都在build文件夹
     test("test1.txt", "out1.txt", test_engine);
     test("test1.txt", "out2.txt", test_pipeline1);

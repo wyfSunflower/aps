@@ -1,4 +1,4 @@
 Parse 0
-Randomized result: 8.4304 42152 5000
+Randomized result: 2 10000 5000
 Parse 0
-Randomized result: 7.0748 35374 5000
+Randomized result: 7.826 39130 5000
