@@ -1,234 +1,234 @@
 TEST GROUP 1
 [Using graphudf]run result of j1: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf]run result of j2: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 1)==1
 
 TEST GROUP 2
 [Using graphudf]run result of j1: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf]run result of j2: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 0)==0
 
 TEST GROUP 3
 [Using graphudf2]run result of j1: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf2]run result of j2: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf2]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 1)==1
 
 TEST GROUP 4
 [Using graphudf2]run result of j1: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf2]run result of j2: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 [Using graphudf2]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 0)==0
 
 TEST GROUP 5
 [Using graphudf3]run result of j1: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf3]run result of j2: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf3]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_p_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_p_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_p_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_p_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_p_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_p_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 1)==1
 
 TEST GROUP 6
 [Using graphudf3]run result of j1: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf3]run result of j2: 0
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line144:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line144:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} failed because result (type any).has_value() == false!
  e.getlog()
 [Using graphudf3]run result of j3: 1
-[2022-09-22 12:54:44 run_p_internal]: startnodes=={0}, call_layer==0.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{1, 1}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(1).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
-E:\graph_simulator\engine\engine.h, line171:[2022-09-22 12:54:44 run_s_internal]: Push{2, 2}.
-E:\graph_simulator\engine\engine.h, line115:[2022-09-22 12:54:44 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
-E:\graph_simulator\engine\engine.h, line129:[2022-09-22 12:54:44 run_s_internal]: launch(2).
-E:\graph_simulator\engine\engine.h, line158:[2022-09-22 12:54:44 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+[2022-09-22 13:00:22 run_p_internal]: startnodes=={0}, call_layer==0.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({0, 0}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{1, 1}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({1, 1}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(1).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {1 (layer), 1 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
+/home/muses/graph_simulator/engine/engine.h, line171:[2022-09-22 13:00:22 run_s_internal]: Push{2, 2}.
+/home/muses/graph_simulator/engine/engine.h, line115:[2022-09-22 13:00:22 run_s_internal]: samelayer.push_back({2, 2}), pq.size()==1
+/home/muses/graph_simulator/engine/engine.h, line129:[2022-09-22 13:00:22 run_s_internal]: launch(2).
+/home/muses/graph_simulator/engine/engine.h, line158:[2022-09-22 13:00:22 run_s_internal]: Handle {2 (layer), 2 (idx), 0 (call_layer)} successful. Verdict==2[Stored]
  e.getlog()
 e.parallel (should be 0)==0
 
